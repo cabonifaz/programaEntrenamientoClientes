@@ -710,8 +710,8 @@
             padding: 40px;
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scale(0.98);
+            transition: opacity 0.6s ease, transform 0.6s ease;
             position: absolute;
             width: 100%;
             pointer-events: none;
@@ -722,7 +722,7 @@
 
         .schedule-content.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1);
             position: relative;
             pointer-events: auto;
             display: block !important;
@@ -1243,6 +1243,32 @@
             color: white;
         }
 
+        /* Estilo para feriados */
+        /* Estilo para feriados */
+        .calendar-day.feriado {
+            background: linear-gradient(135deg, #e8b4b8 0%, #d4a5a5 100%);
+            border: 2px dashed #c48a8e;
+            position: relative;
+        }
+
+        .calendar-day.feriado .day-num {
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .calendar-day.feriado .class-tag {
+            background: rgba(255, 255, 255, 0.5);
+            color: #7a4a4e;
+            font-weight: 800;
+        }
+
+        .feriado-icon {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            font-size: 10px;
+        }
+
         /* Leyenda */
         .calendar-legend {
             display: grid;
@@ -1252,6 +1278,11 @@
             background: var(--azul-muy-claro);
             border-radius: 20px;
             margin-top: 30px;
+        }
+
+        .legend-feriado {
+            background: linear-gradient(135deg, #e8b4b8 0%, #d4a5a5 100%);
+            border: 2px dashed #c48a8e;
         }
 
         .legend-item {
@@ -3355,20 +3386,27 @@
             </div>
             <div class="schedule-container">
                 <div class="schedule-tabs">
-                    <button class="tab-button active" onclick="showSchedule('semana1-2')">Semanas 1-2</button>
+                    <button class="tab-button active" onclick="showSchedule('semana1')">Semana 1</button>
+                    <button class="tab-button" onclick="showSchedule('semana2')">Semana 2</button>
                     <button class="tab-button" onclick="showSchedule('semana3')">Semana 3</button>
-                    <button class="tab-button" onclick="showSchedule('semana4-7')">Semanas 4-7</button>
-                    <button class="tab-button" onclick="showSchedule('semana8-9')">Semanas 8-9</button>
-                    <button class="tab-button" onclick="showSchedule('semana10')">Semana 10</button>
-                    <button class="tab-button" onclick="showSchedule('semana11-12')">Semanas 11-12</button>
+                    <button class="tab-button" onclick="showSchedule('semana4')">Semana 4</button>
+                    <button class="tab-button" onclick="showSchedule('semana5')">Semana 5</button>
+                    <button class="tab-button" onclick="showSchedule('semana6')">Semana 6</button>
+                    <button class="tab-button" onclick="showSchedule('semana7-8')">Semanas 7-8</button>
+                    <button class="tab-button" onclick="showSchedule('semana9-12')">Semanas 9-12</button>
+                    <button class="tab-button" onclick="showSchedule('semana13')">Semana 13</button>
+                    <button class="tab-button" onclick="showSchedule('semana14-15')">Semanas 14-15</button>
+                    <button class="tab-button" onclick="showSchedule('semana16')">Semana 16</button>
+                    <button class="tab-button" onclick="showSchedule('semana17')">Semana 17</button>
+                    <button class="tab-button" onclick="showSchedule('semana18-20')">Semanas 18-20</button>
                 </div>
 
                 <div class="schedule-wrapper">
-                    <!-- SEMANAS 1-2: GESTIÓN -->
-                    <div class="schedule-content active" id="semana1-2Schedule">
+                    <!-- SEMANA 1 -->
+                    <div class="schedule-content active" id="semana1Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 1-2 - Gestión de Proyectos</div>
+                            <div>SEMANA 1</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -3385,18 +3423,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="time-cell">9:00-11:00am</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
-                                    </tr>
-                                    <tr>
                                         <td class="time-cell">4:00-6:00pm</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td><span class="class-badge csharp">📋 Gestión</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
@@ -3407,11 +3436,11 @@
                         </div>
                     </div>
 
-                    <!-- SEMANA 3: ARQUITECTURA -->
-                    <div class="schedule-content" id="semana3Schedule" style="display: none;">
+                    <!-- SEMANA 2 -->
+                    <div class="schedule-content" id="semana2Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 3 - Arquitectura</div>
+                            <div>SEMANA 2</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -3428,62 +3457,148 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="time-cell">9:00-11:00am</td>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANA 3 -->
+                    <div class="schedule-content" id="semana3Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANA 3</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANA 4 -->
+                    <div class="schedule-content" id="semana4Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANA 4</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">📋 Gestión</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td><span class="class-badge react">🏗️ Arquitectura</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANA 5 -->
+                    <div class="schedule-content" id="semana5Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANA 5</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td
+                                            style="background: linear-gradient(135deg, #e8b4b8 0%, #d4a5a5 100%); color: white; font-weight: 700;">
+                                            🎉 FERIADO</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge react">🏗️ Arquitectura</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANA 6 -->
+                    <div class="schedule-content" id="semana6Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANA 6</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td class="time-cell">4:00-6:00pm</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td><span class="class-badge react">🏗️ Arquitectura</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge react">🏗️ Arquitectura</span></td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- SEMANAS 4-7: BACK END -->
-                    <div class="schedule-content" id="semana4-7Schedule" style="display: none;">
-                        <div class="schedule-header">
-                            <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 4-7 - Back End (.NET Core 8)</div>
-                        </div>
-                        <div class="schedule-table-wrapper">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Hora</th>
-                                        <th>Lunes</th>
-                                        <th>Martes</th>
-                                        <th>Miércoles</th>
-                                        <th>Jueves</th>
-                                        <th>Viernes</th>
-                                        <th>Sábado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="time-cell">9:00-11:00am</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge react">⚙️ Back End</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="time-cell">4:00-6:00pm</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge react">⚙️ Back End</span></td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td><span class="class-badge react">⚙️ Back End</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
@@ -3493,11 +3608,11 @@
                         </div>
                     </div>
 
-                    <!-- SEMANAS 8-9: FRONT END -->
-                    <div class="schedule-content" id="semana8-9Schedule" style="display: none;">
+                    <!-- SEMANAS 7-8 -->
+                    <div class="schedule-content" id="semana7-8Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 8-9 - Front End (Angular JS)</div>
+                            <div>SEMANAS 7-8</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -3514,14 +3629,109 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="time-cell">9:00-11:00am</td>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge react">⚙️ Back End</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td
+                                            style="background: linear-gradient(135deg, #e8b4b8 0%, #d4a5a5 100%); color: white; font-weight: 700;">
+                                            🎉 FERIADO</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANAS 9-12 -->
+                    <div class="schedule-content" id="semana9-12Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANAS 9-12</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge react">⚙️ Back End</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge react">⚙️ Back End</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANA 13 -->
+                    <div class="schedule-content" id="semana13Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANA 13</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge react">⚙️ Back End</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td><span class="class-badge angular">🎨 Front End</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANAS 14-15 -->
+                    <div class="schedule-content" id="semana14-15Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANAS 14-15</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td class="time-cell">4:00-6:00pm</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
@@ -3536,11 +3746,11 @@
                         </div>
                     </div>
 
-                    <!-- SEMANA 10: IA -->
-                    <div class="schedule-content" id="semana10Schedule" style="display: none;">
+                    <!-- SEMANA 16 -->
+                    <div class="schedule-content" id="semana16Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 10 - IA para Coding</div>
+                            <div>SEMANA 16</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -3557,20 +3767,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="time-cell">9:00-11:00am</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge csharp">🤖 IA</span></td>
-                                    </tr>
-                                    <tr>
                                         <td class="time-cell">4:00-6:00pm</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge csharp">🤖 IA</span></td>
+                                        <td><span class="class-badge angular">🎨 Front End</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge csharp">🤖 IA</span></td>
+                                        <td><span class="class-badge csharp">🤖 AI</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                     </tr>
@@ -3579,11 +3780,11 @@
                         </div>
                     </div>
 
-                    <!-- SEMANAS 11-12: CLOUD -->
-                    <div class="schedule-content" id="semana11-12Schedule" style="display: none;">
+                    <!-- SEMANA 17 -->
+                    <div class="schedule-content" id="semana17Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 11-12 - AWS Cloud</div>
+                            <div>SEMANA 17</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -3600,14 +3801,39 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="time-cell">9:00-11:00am</td>
+                                        <td class="time-cell">4:00-6:00pm</td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">🤖 AI</span></td>
+                                        <td style="background: #f0f0f0; color: #999;">-</td>
+                                        <td><span class="class-badge csharp">🤖 AI</span></td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td style="background: #f0f0f0; color: #999;">-</td>
-                                        <td><span class="class-badge sql">☁️ Cloud</span></td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SEMANAS 18-20 -->
+                    <div class="schedule-content" id="semana18-20Schedule">
+                        <div class="schedule-header">
+                            <div class="schedule-icon">📅</div>
+                            <div>SEMANAS 18-20</div>
+                        </div>
+                        <div class="schedule-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td class="time-cell">4:00-6:00pm</td>
                                         <td style="background: #f0f0f0; color: #999;">-</td>
@@ -3621,7 +3847,9 @@
                             </table>
                         </div>
                     </div>
+
                 </div>
+            </div>
         </section>
 
 
@@ -3789,7 +4017,7 @@
                     <div class="section-badge">📅 PLANIFICACIÓN COMPLETA</div>
                     <h2 class="section-title">Calendario Visual de Clases</h2>
                     <p class="section-description">
-                        Vista completa de todas las sesiones programadas de noviembre 2025 a febrero 2026
+                        Vista completa de todas las sesiones programadas de noviembre 2025 a marzo 2026
                     </p>
                 </div>
 
@@ -3828,8 +4056,7 @@
                             <div class="calendar-day class-gestion"><span class="day-num">13</span><span
                                     class="class-tag">Gestión</span></div>
                             <div class="calendar-day"><span class="day-num">14</span></div>
-                            <div class="calendar-day class-gestion"><span class="day-num">15</span><span
-                                    class="class-tag">Gestión</span></div>
+                            <div class="calendar-day"><span class="day-num">15</span></div>
                             <div class="calendar-day"><span class="day-num">16</span></div>
 
                             <div class="calendar-day"><span class="day-num">17</span></div>
@@ -3839,19 +4066,17 @@
                             <div class="calendar-day class-gestion"><span class="day-num">20</span><span
                                     class="class-tag">Gestión</span></div>
                             <div class="calendar-day"><span class="day-num">21</span></div>
-                            <div class="calendar-day class-gestion"><span class="day-num">22</span><span
-                                    class="class-tag">Gestión</span></div>
+                            <div class="calendar-day"><span class="day-num">22</span></div>
                             <div class="calendar-day"><span class="day-num">23</span></div>
 
                             <div class="calendar-day"><span class="day-num">24</span></div>
                             <div class="calendar-day class-gestion"><span class="day-num">25</span><span
                                     class="class-tag">Gestión</span></div>
                             <div class="calendar-day"><span class="day-num">26</span></div>
-                            <div class="calendar-day class-arquitectura"><span class="day-num">27</span><span
-                                    class="class-tag">Arquitectura</span></div>
+                            <div class="calendar-day class-gestion"><span class="day-num">27</span><span
+                                    class="class-tag">Gestión</span></div>
                             <div class="calendar-day"><span class="day-num">28</span></div>
-                            <div class="calendar-day class-arquitectura"><span class="day-num">29</span><span
-                                    class="class-tag">Arquitectura</span></div>
+                            <div class="calendar-day"><span class="day-num">29</span></div>
                             <div class="calendar-day"><span class="day-num">30</span></div>
                         </div>
                     </div>
@@ -3869,45 +4094,53 @@
                             <div class="day-header">D</div>
 
                             <div class="calendar-day"><span class="day-num">1</span></div>
-                            <div class="calendar-day class-arquitectura"><span class="day-num">2</span><span
-                                    class="class-tag">Arquitectura</span></div>
+                            <div class="calendar-day class-gestion"><span class="day-num">2</span><span
+                                    class="class-tag">Gestión</span></div>
                             <div class="calendar-day"><span class="day-num">3</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">4</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day class-arquitectura"><span class="day-num">4</span><span
+                                    class="class-tag">Arquitectura</span></div>
                             <div class="calendar-day"><span class="day-num">5</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">6</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day"><span class="day-num">6</span></div>
                             <div class="calendar-day"><span class="day-num">7</span></div>
 
-                            <div class="calendar-day"><span class="day-num">8</span></div>
-                            <div class="calendar-day"><span class="day-num">9</span></div>
+                            <div class="calendar-day feriado">
+                                <span class="feriado-icon">🎉</span>
+                                <span class="day-num">8</span>
+                                <span class="class-tag">Inmaculada</span>
+                            </div>
+                            <div class="calendar-day feriado">
+                                <span class="feriado-icon">🎉</span>
+                                <span class="day-num">9</span>
+                                <span class="class-tag">Batalla Ayacucho</span>
+                            </div>
                             <div class="calendar-day"><span class="day-num">10</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">11</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day class-arquitectura"><span class="day-num">11</span><span
+                                    class="class-tag">Arquitectura</span></div>
                             <div class="calendar-day"><span class="day-num">12</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">13</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day"><span class="day-num">13</span></div>
                             <div class="calendar-day"><span class="day-num">14</span></div>
 
                             <div class="calendar-day"><span class="day-num">15</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">16</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day class-arquitectura"><span class="day-num">16</span><span
+                                    class="class-tag">Arquitectura</span></div>
                             <div class="calendar-day"><span class="day-num">17</span></div>
                             <div class="calendar-day class-backend"><span class="day-num">18</span><span
                                     class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">19</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">20</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day"><span class="day-num">20</span></div>
                             <div class="calendar-day"><span class="day-num">21</span></div>
 
                             <div class="calendar-day"><span class="day-num">22</span></div>
                             <div class="calendar-day class-backend"><span class="day-num">23</span><span
                                     class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">24</span></div>
-                            <div class="calendar-day"><span class="day-num">25</span></div>
+                            <div class="calendar-day feriado">
+                                <span class="feriado-icon">🎄</span>
+                                <span class="day-num">25</span>
+                                <span class="class-tag">Navidad</span>
+                            </div>
                             <div class="calendar-day"><span class="day-num">26</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">27</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day"><span class="day-num">27</span></div>
                             <div class="calendar-day"><span class="day-num">28</span></div>
 
                             <div class="calendar-day"><span class="day-num">29</span></div>
@@ -3936,54 +4169,53 @@
                             <div class="calendar-day empty"></div>
                             <div class="calendar-day empty"></div>
                             <div class="calendar-day empty"></div>
-                            <div class="calendar-day"><span class="day-num">1</span></div>
+                            <div class="calendar-day feriado">
+                                <span class="feriado-icon">🎆</span>
+                                <span class="day-num">1</span>
+                                <span class="class-tag">Año Nuevo</span>
+                            </div>
                             <div class="calendar-day"><span class="day-num">2</span></div>
-                            <div class="calendar-day class-backend"><span class="day-num">3</span><span
-                                    class="class-tag">Back-End</span></div>
+                            <div class="calendar-day"><span class="day-num">3</span></div>
                             <div class="calendar-day"><span class="day-num">4</span></div>
 
                             <div class="calendar-day"><span class="day-num">5</span></div>
                             <div class="calendar-day class-backend"><span class="day-num">6</span><span
                                     class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">7</span></div>
-                            <div class="calendar-day class-frontend"><span class="day-num">8</span><span
-                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">8</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">9</span></div>
-                            <div class="calendar-day class-frontend"><span class="day-num">10</span><span
-                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">10</span></div>
                             <div class="calendar-day"><span class="day-num">11</span></div>
 
                             <div class="calendar-day"><span class="day-num">12</span></div>
-                            <div class="calendar-day class-frontend"><span class="day-num">13</span><span
-                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">13</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">14</span></div>
-                            <div class="calendar-day class-frontend"><span class="day-num">15</span><span
-                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">15</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">16</span></div>
-                            <div class="calendar-day class-frontend"><span class="day-num">17</span><span
-                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">17</span></div>
                             <div class="calendar-day"><span class="day-num">18</span></div>
 
                             <div class="calendar-day"><span class="day-num">19</span></div>
-                            <div class="calendar-day class-frontend"><span class="day-num">20</span><span
-                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">20</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">21</span></div>
-                            <div class="calendar-day class-ia"><span class="day-num">22</span><span class="class-tag">IA
-                                    Coding</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">22</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">23</span></div>
-                            <div class="calendar-day class-ia"><span class="day-num">24</span><span class="class-tag">IA
-                                    Coding</span></div>
+                            <div class="calendar-day"><span class="day-num">24</span></div>
                             <div class="calendar-day"><span class="day-num">25</span></div>
 
                             <div class="calendar-day"><span class="day-num">26</span></div>
-                            <div class="calendar-day class-ia"><span class="day-num">27</span><span class="class-tag">IA
-                                    Coding</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">27</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">28</span></div>
-                            <div class="calendar-day class-cloud"><span class="day-num">29</span><span
-                                    class="class-tag">Cloud AWS</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">29</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">30</span></div>
-                            <div class="calendar-day class-cloud"><span class="day-num">31</span><span
-                                    class="class-tag">Cloud AWS</span></div>
+                            <div class="calendar-day"><span class="day-num">31</span></div>
                             <div class="calendar-day empty"></div>
                         </div>
                     </div>
@@ -4009,39 +4241,113 @@
                             <div class="calendar-day"><span class="day-num">1</span></div>
 
                             <div class="calendar-day"><span class="day-num">2</span></div>
-                            <div class="calendar-day class-cloud"><span class="day-num">3</span><span
-                                    class="class-tag">Cloud AWS</span></div>
+                            <div class="calendar-day class-backend"><span class="day-num">3</span><span
+                                    class="class-tag">Back-End</span></div>
                             <div class="calendar-day"><span class="day-num">4</span></div>
-                            <div class="calendar-day class-cloud"><span class="day-num">5</span><span
-                                    class="class-tag">Cloud AWS</span></div>
+                            <div class="calendar-day class-frontend"><span class="day-num">5</span><span
+                                    class="class-tag">Front-End</span></div>
                             <div class="calendar-day"><span class="day-num">6</span></div>
-                            <div class="calendar-day class-cloud"><span class="day-num">7</span><span
-                                    class="class-tag">Cloud AWS</span></div>
+                            <div class="calendar-day"><span class="day-num">7</span></div>
+                            <div class="calendar-day"><span class="day-num">8</span></div>
+
+                            <div class="calendar-day"><span class="day-num">9</span></div>
+                            <div class="calendar-day class-frontend"><span class="day-num">10</span><span
+                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">11</span></div>
+                            <div class="calendar-day class-frontend"><span class="day-num">12</span><span
+                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">13</span></div>
+                            <div class="calendar-day"><span class="day-num">14</span></div>
+                            <div class="calendar-day"><span class="day-num">15</span></div>
+
+                            <div class="calendar-day"><span class="day-num">16</span></div>
+                            <div class="calendar-day class-frontend"><span class="day-num">17</span><span
+                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">18</span></div>
+                            <div class="calendar-day class-frontend"><span class="day-num">19</span><span
+                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">20</span></div>
+                            <div class="calendar-day"><span class="day-num">21</span></div>
+                            <div class="calendar-day"><span class="day-num">22</span></div>
+
+                            <div class="calendar-day"><span class="day-num">23</span></div>
+                            <div class="calendar-day class-frontend"><span class="day-num">24</span><span
+                                    class="class-tag">Front-End</span></div>
+                            <div class="calendar-day"><span class="day-num">25</span></div>
+                            <div class="calendar-day class-ia"><span class="day-num">26</span><span class="class-tag">IA
+                                    Coding</span></div>
+                            <div class="calendar-day"><span class="day-num">27</span></div>
+                            <div class="calendar-day"><span class="day-num">28</span></div>
+                            <div class="calendar-day empty"></div>
+                        </div>
+                    </div>
+
+                    <!-- MARZO 2026 -->
+                    <div class="month-container">
+                        <h3 class="month-title">Marzo 2026</h3>
+                        <div class="calendar-grid">
+                            <div class="day-header">L</div>
+                            <div class="day-header">M</div>
+                            <div class="day-header">X</div>
+                            <div class="day-header">J</div>
+                            <div class="day-header">V</div>
+                            <div class="day-header">S</div>
+                            <div class="day-header">D</div>
+
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day"><span class="day-num">1</span></div>
+
+                            <div class="calendar-day"><span class="day-num">2</span></div>
+                            <div class="calendar-day class-ia"><span class="day-num">3</span><span class="class-tag">IA
+                                    Coding</span></div>
+                            <div class="calendar-day"><span class="day-num">4</span></div>
+                            <div class="calendar-day class-ia"><span class="day-num">5</span><span class="class-tag">IA
+                                    Coding</span></div>
+                            <div class="calendar-day"><span class="day-num">6</span></div>
+                            <div class="calendar-day"><span class="day-num">7</span></div>
                             <div class="calendar-day"><span class="day-num">8</span></div>
 
                             <div class="calendar-day"><span class="day-num">9</span></div>
                             <div class="calendar-day class-cloud"><span class="day-num">10</span><span
                                     class="class-tag">Cloud AWS</span></div>
                             <div class="calendar-day"><span class="day-num">11</span></div>
-                            <div class="calendar-day"><span class="day-num">12</span></div>
+                            <div class="calendar-day class-cloud"><span class="day-num">12</span><span
+                                    class="class-tag">Cloud AWS</span></div>
                             <div class="calendar-day"><span class="day-num">13</span></div>
                             <div class="calendar-day"><span class="day-num">14</span></div>
                             <div class="calendar-day"><span class="day-num">15</span></div>
 
                             <div class="calendar-day"><span class="day-num">16</span></div>
-                            <div class="calendar-day"><span class="day-num">17</span></div>
+                            <div class="calendar-day class-cloud"><span class="day-num">17</span><span
+                                    class="class-tag">Cloud AWS</span></div>
                             <div class="calendar-day"><span class="day-num">18</span></div>
-                            <div class="calendar-day"><span class="day-num">19</span></div>
+                            <div class="calendar-day class-cloud"><span class="day-num">19</span><span
+                                    class="class-tag">Cloud AWS</span></div>
                             <div class="calendar-day"><span class="day-num">20</span></div>
                             <div class="calendar-day"><span class="day-num">21</span></div>
                             <div class="calendar-day"><span class="day-num">22</span></div>
 
                             <div class="calendar-day"><span class="day-num">23</span></div>
-                            <div class="calendar-day"><span class="day-num">24</span></div>
+                            <div class="calendar-day class-cloud"><span class="day-num">24</span><span
+                                    class="class-tag">Cloud AWS</span></div>
                             <div class="calendar-day"><span class="day-num">25</span></div>
-                            <div class="calendar-day"><span class="day-num">26</span></div>
+                            <div class="calendar-day class-cloud"><span class="day-num">26</span><span
+                                    class="class-tag">Cloud AWS</span></div>
                             <div class="calendar-day"><span class="day-num">27</span></div>
                             <div class="calendar-day"><span class="day-num">28</span></div>
+                            <div class="calendar-day"><span class="day-num">29</span></div>
+
+                            <div class="calendar-day"><span class="day-num">30</span></div>
+                            <div class="calendar-day"><span class="day-num">31</span></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
                             <div class="calendar-day empty"></div>
                         </div>
                     </div>
@@ -4072,6 +4378,11 @@
                     <div class="legend-item">
                         <div class="legend-box legend-cloud"></div>
                         <span><strong>Cloud AWS</strong> (6 clases)</span>
+                    </div>
+                    <!-- AGREGAR ESTE NUEVO ITEM -->
+                    <div class="legend-item">
+                        <div class="legend-box legend-feriado"></div>
+                        <span><strong>Feriado</strong></span>
                     </div>
                 </div>
             </div>
@@ -4605,7 +4916,7 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>1</td>
-                                <td class="session-date">08/01/2026</td>
+                                <td class="session-date">05/02/2026</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
@@ -4615,7 +4926,7 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>2</td>
-                                <td class="session-date">08/01/2026</td>
+                                <td class="session-date">05/02/2026</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
@@ -4625,9 +4936,9 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>3</td>
-                                <td class="session-date">10/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">10/02/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Estructura del proyecto Angular y primeras modificaciones a
                                     la interfaz inicial</td>
@@ -4635,9 +4946,9 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>4</td>
-                                <td class="session-date">10/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">10/02/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Creación de Componentes: qué son, cómo crearlos y usarlos
                                     para organizar la UI</td>
@@ -4645,8 +4956,8 @@
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>5</td>
-                                <td class="session-date">13/01/2026</td>
-                                <td>Martes</td>
+                                <td class="session-date">12/02/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Data Binding en Angular: conectar datos entre el componente y
@@ -4655,8 +4966,8 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>6</td>
-                                <td class="session-date">13/01/2026</td>
-                                <td>Martes</td>
+                                <td class="session-date">12/02/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Directivas básicas (ngIf, ngFor): controlar qué se muestra y
@@ -4665,8 +4976,8 @@
                             <tr>
                                 <td class="session-number">7</td>
                                 <td>7</td>
-                                <td class="session-date">15/01/2026</td>
-                                <td>Jueves</td>
+                                <td class="session-date">17/02/2026</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Servicios (Services): separar la lógica y compartirla entre
@@ -4675,8 +4986,8 @@
                             <tr>
                                 <td class="session-number">8</td>
                                 <td>8</td>
-                                <td class="session-date">15/01/2026</td>
-                                <td>Jueves</td>
+                                <td class="session-date">17/02/2026</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Comunicación entre componentes con @Input y @Output +
@@ -4685,9 +4996,9 @@
                             <tr>
                                 <td class="session-number">9</td>
                                 <td>9</td>
-                                <td class="session-date">17/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">19/02/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Consumo de APIs con HttpClient: peticiones GET/POST y mostrar
                                     resultados en pantalla</td>
@@ -4695,9 +5006,9 @@
                             <tr>
                                 <td class="session-number">10</td>
                                 <td>10</td>
-                                <td class="session-date">17/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">19/02/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
                                 <td class="session-topics">Manejo de errores y estados de carga al consumir APIs (UX +
                                     Loading + Error Handling)</td>
@@ -4705,7 +5016,7 @@
                             <tr>
                                 <td class="session-number">11</td>
                                 <td>11</td>
-                                <td class="session-date">20/01/2026</td>
+                                <td class="session-date">24/02/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
@@ -4715,7 +5026,7 @@
                             <tr>
                                 <td class="session-number">12</td>
                                 <td>12</td>
-                                <td class="session-date">20/01/2026</td>
+                                <td class="session-date">24/02/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Daniel Soto</td>
@@ -5542,7 +5853,7 @@
                                 <td>2</td>
                                 <td class="session-date">13/11/2025</td>
                                 <td>Jueves</td>
-                                <td>16:00-18:01</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Principios del Manifiesto Ágil y roles clave en un equipo
                                     Scrum (PO, SM, Dev Team)</td>
@@ -5550,9 +5861,9 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>3</td>
-                                <td class="session-date">15/11/2025</td>
-                                <td>Sábado</td>
-                                <td>16:00-18:02</td>
+                                <td class="session-date">18/11/2025</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Artefactos de Scrum: Product Backlog, Sprint Backlog y
                                     Definition of Done con ejemplos prácticos</td>
@@ -5560,9 +5871,9 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>4</td>
-                                <td class="session-date">15/11/2025</td>
-                                <td>Sábado</td>
-                                <td>16:00-18:03</td>
+                                <td class="session-date">18/11/2025</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Eventos de Scrum: planificación, dailys, reviews y
                                     retrospectivas con dinámica simulada</td>
@@ -5570,9 +5881,9 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>5</td>
-                                <td class="session-date">18/11/2025</td>
-                                <td>Martes</td>
-                                <td>16:00-18:04</td>
+                                <td class="session-date">20/11/2025</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Herramientas para gestión ágil: Jira/Trello para organizar
                                     backlog, sprints y tableros de seguimiento</td>
@@ -5580,9 +5891,9 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>6</td>
-                                <td class="session-date">18/11/2025</td>
-                                <td>Martes</td>
-                                <td>16:00-18:05</td>
+                                <td class="session-date">20/11/2025</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Estimación ágil: story points, planning poker y medición de
                                     velocidad del equipo</td>
@@ -5590,9 +5901,9 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>7</td>
-                                <td class="session-date">20/11/2025</td>
-                                <td>Jueves</td>
-                                <td>16:00-18:06</td>
+                                <td class="session-date">25/11/2025</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Introducción a PMP y al PMBOK: marco general y aplicación en
                                     proyectos de tecnología</td>
@@ -5600,9 +5911,9 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>8</td>
-                                <td class="session-date">20/11/2025</td>
-                                <td>Jueves</td>
-                                <td>16:00-18:07</td>
+                                <td class="session-date">25/11/2025</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Ciclo de vida de un proyecto según PMP y relación con el
                                     desarrollo de software</td>
@@ -5610,9 +5921,9 @@
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>9</td>
-                                <td class="session-date">22/11/2025</td>
-                                <td>Sábado</td>
-                                <td>16:00-18:08</td>
+                                <td class="session-date">27/11/2025</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Gestión de alcance, tiempo y costos en proyectos: cómo
                                     planificar y controlar el proyecto</td>
@@ -5620,9 +5931,9 @@
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>10</td>
-                                <td class="session-date">22/11/2025</td>
-                                <td>Sábado</td>
-                                <td>16:00-18:09</td>
+                                <td class="session-date">27/11/2025</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Gestión de riesgos, calidad y comunicaciones: claves para
                                     evitar fallas comunes en proyectos TI</td>
@@ -5630,9 +5941,9 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>11</td>
-                                <td class="session-date">25/11/2025</td>
+                                <td class="session-date">02/12/2025</td>
                                 <td>Martes</td>
-                                <td>16:00-18:10</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Integración de Scrum + PMP: cuándo combinar metodologías y
                                     ejemplos de modelos híbridos</td>
@@ -5640,9 +5951,9 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>12</td>
-                                <td class="session-date">25/11/2025</td>
+                                <td class="session-date">02/12/2025</td>
                                 <td>Martes</td>
-                                <td>16:00-18:11</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Buenas prácticas del Project Manager y Scrum Master para
                                     liderar equipos de desarrollo modernos</td>
@@ -5737,7 +6048,7 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>1</td>
-                                <td class="session-date">27/11/2025</td>
+                                <td class="session-date">04/12/2025</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -5747,7 +6058,7 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>2</td>
-                                <td class="session-date">27/11/2025</td>
+                                <td class="session-date">04/12/2025</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -5757,9 +6068,9 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>3</td>
-                                <td class="session-date">29/11/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">11/12/2025</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Ambientes (Dev, QA, Prod): flujo de despliegue y cómo viaja
                                     un proyecto desde desarrollo hasta producción</td>
@@ -5767,9 +6078,9 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>4</td>
-                                <td class="session-date">29/11/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">11/12/2025</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Logs, manejo de errores y monitoreo básico para proyectos web
                                     (conceptos esenciales)</td>
@@ -5777,7 +6088,7 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>5</td>
-                                <td class="session-date">02/12/2025</td>
+                                <td class="session-date">16/12/2025</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -5787,7 +6098,7 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>6</td>
-                                <td class="session-date">02/12/2025</td>
+                                <td class="session-date">16/12/2025</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -5877,7 +6188,7 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>1</td>
-                                <td class="session-date">04/12/2025</td>
+                                <td class="session-date">18/12/2025</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -5887,7 +6198,7 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>2</td>
-                                <td class="session-date">04/12/2025</td>
+                                <td class="session-date">18/12/2025</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -5897,9 +6208,9 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>3</td>
-                                <td class="session-date">06/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">23/12/2025</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Conceptos básicos de BD: tablas, registros, tipos de datos y
                                     relaciones</td>
@@ -5907,17 +6218,17 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>4</td>
-                                <td class="session-date">06/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">23/12/2025</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">SQL CRUD básico: SELECT, INSERT, UPDATE, DELETE</td>
                             </tr>
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>5</td>
-                                <td class="session-date">11/12/2025</td>
-                                <td>Jueves</td>
+                                <td class="session-date">30/12/2025</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Relaciones en SQL: PK, FK, JOINs y modelado de datos</td>
@@ -5925,8 +6236,8 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>6</td>
-                                <td class="session-date">11/12/2025</td>
-                                <td>Jueves</td>
+                                <td class="session-date">30/12/2025</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Práctica: diseño de BD para caso real (Usuarios + Productos +
@@ -5935,9 +6246,9 @@
                             <tr>
                                 <td class="session-number">7</td>
                                 <td>7</td>
-                                <td class="session-date">13/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">06/01/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Introducción a .NET 8 y C#: estructura del proyecto,
                                     namespaces y clases</td>
@@ -5945,9 +6256,9 @@
                             <tr>
                                 <td class="session-number">8</td>
                                 <td>8</td>
-                                <td class="session-date">13/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">06/01/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">C# básico: variables, condicionales, colecciones y métodos
                                 </td>
@@ -5955,8 +6266,8 @@
                             <tr>
                                 <td class="session-number">9</td>
                                 <td>9</td>
-                                <td class="session-date">16/12/2025</td>
-                                <td>Martes</td>
+                                <td class="session-date">08/01/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">POO aplicada al Back-End: clases, objetos, encapsulación</td>
@@ -5964,8 +6275,8 @@
                             <tr>
                                 <td class="session-number">10</td>
                                 <td>10</td>
-                                <td class="session-date">16/12/2025</td>
-                                <td>Martes</td>
+                                <td class="session-date">08/01/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">POO práctica: modelos y lógica de negocio en C#</td>
@@ -5973,8 +6284,8 @@
                             <tr>
                                 <td class="session-number">11</td>
                                 <td>11</td>
-                                <td class="session-date">18/12/2025</td>
-                                <td>Jueves</td>
+                                <td class="session-date">13/01/2026</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Creación de Web API con .NET 8: estructura, controladores y
@@ -5983,8 +6294,8 @@
                             <tr>
                                 <td class="session-number">12</td>
                                 <td>12</td>
-                                <td class="session-date">18/12/2025</td>
-                                <td>Jueves</td>
+                                <td class="session-date">13/01/2026</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">RESTful API: GET, POST, PUT, DELETE + buenas prácticas de
@@ -5993,9 +6304,9 @@
                             <tr>
                                 <td class="session-number">13</td>
                                 <td>13</td>
-                                <td class="session-date">20/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">15/01/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Introducción a Dapper en .NET: instalación, conexión a SQL
                                     Server y CRUD básico con consultas parametrizadas</td>
@@ -6003,9 +6314,9 @@
                             <tr>
                                 <td class="session-number">14</td>
                                 <td>14</td>
-                                <td class="session-date">20/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">15/01/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Buenas prácticas de acceso a datos: patrón Repositorio, DTOs
                                     y paginación básica desde la API</td>
@@ -6013,7 +6324,7 @@
                             <tr>
                                 <td class="session-number">15</td>
                                 <td>15</td>
-                                <td class="session-date">23/12/2025</td>
+                                <td class="session-date">20/01/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -6023,7 +6334,7 @@
                             <tr>
                                 <td class="session-number">16</td>
                                 <td>16</td>
-                                <td class="session-date">23/12/2025</td>
+                                <td class="session-date">20/01/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -6033,18 +6344,18 @@
                             <tr>
                                 <td class="session-number">17</td>
                                 <td>17</td>
-                                <td class="session-date">27/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">22/01/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Arquitectura de Capas: Services, Controllers, Data</td>
                             </tr>
                             <tr>
                                 <td class="session-number">18</td>
                                 <td>18</td>
-                                <td class="session-date">27/12/2025</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">22/01/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Refactor a arquitectura por capas + Inyección de Dependencia
                                     (DI)</td>
@@ -6052,7 +6363,7 @@
                             <tr>
                                 <td class="session-number">19</td>
                                 <td>19</td>
-                                <td class="session-date">30/12/2025</td>
+                                <td class="session-date">27/01/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -6062,7 +6373,7 @@
                             <tr>
                                 <td class="session-number">20</td>
                                 <td>20</td>
-                                <td class="session-date">30/12/2025</td>
+                                <td class="session-date">27/01/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -6071,18 +6382,18 @@
                             <tr>
                                 <td class="session-number">21</td>
                                 <td>21</td>
-                                <td class="session-date">03/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">29/01/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Documentación de API con Swagger</td>
                             </tr>
                             <tr>
                                 <td class="session-number">22</td>
                                 <td>22</td>
-                                <td class="session-date">03/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">29/01/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
                                 <td class="session-topics">Deploy de API en la nube (introducción a hosting .NET + SQL)
                                 </td>
@@ -6090,7 +6401,7 @@
                             <tr>
                                 <td class="session-number">23</td>
                                 <td>23</td>
-                                <td class="session-date">06/01/2026</td>
+                                <td class="session-date">03/02/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -6100,7 +6411,7 @@
                             <tr>
                                 <td class="session-number">24</td>
                                 <td>24</td>
-                                <td class="session-date">06/01/2026</td>
+                                <td class="session-date">03/02/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alvaro Burga</td>
@@ -6209,7 +6520,7 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>1</td>
-                                <td class="session-date">22/01/2026</td>
+                                <td class="session-date">26/02/2026</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Cris Bonifaz</td>
@@ -6219,7 +6530,7 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>2</td>
-                                <td class="session-date">22/01/2026</td>
+                                <td class="session-date">26/02/2026</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Cris Bonifaz</td>
@@ -6229,9 +6540,9 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>3</td>
-                                <td class="session-date">24/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">03/03/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Cris Bonifaz</td>
                                 <td class="session-topics">Uso de GPT, Claude y Copilot para escribir, mejorar y
                                     explicar código (con ejemplos guiados)</td>
@@ -6239,9 +6550,9 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>4</td>
-                                <td class="session-date">24/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">03/03/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Cris Bonifaz</td>
                                 <td class="session-topics">Clear Code con IA: refactorización asistida, documentar
                                     código, generar tests y detectar errores con IA</td>
@@ -6249,8 +6560,8 @@
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>5</td>
-                                <td class="session-date">27/01/2026</td>
-                                <td>Martes</td>
+                                <td class="session-date">05/03/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Cris Bonifaz</td>
                                 <td class="session-topics">Qué es RAG y cuándo usarlo: crear asistentes inteligentes
@@ -6259,8 +6570,8 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>6</td>
-                                <td class="session-date">27/01/2026</td>
-                                <td>Martes</td>
+                                <td class="session-date">05/03/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Cris Bonifaz</td>
                                 <td class="session-topics">newRocket y agentes de IA: automatización de tareas
@@ -6359,8 +6670,8 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>1</td>
-                                <td class="session-date">29/01/2026</td>
-                                <td>Jueves</td>
+                                <td class="session-date">10/03/2026</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Introducción a la computación en la nube y beneficios de AWS
@@ -6369,8 +6680,8 @@
                             <tr>
                                 <td class="session-number">1</td>
                                 <td>2</td>
-                                <td class="session-date">29/01/2026</td>
-                                <td>Jueves</td>
+                                <td class="session-date">10/03/2026</td>
+                                <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Primer contacto con la consola de AWS: servicios más usados y
@@ -6379,9 +6690,9 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>3</td>
-                                <td class="session-date">31/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">12/03/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">EC2 explicado desde cero: crear, configurar y administrar
                                     servidores en AWS</td>
@@ -6389,9 +6700,9 @@
                             <tr>
                                 <td class="session-number">2</td>
                                 <td>4</td>
-                                <td class="session-date">31/01/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">12/03/2026</td>
+                                <td>Jueves</td>
+                                <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Redes y seguridad en AWS: VPC, subnets, grupos de seguridad y
                                     buenas prácticas iniciales</td>
@@ -6399,7 +6710,7 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>5</td>
-                                <td class="session-date">03/02/2026</td>
+                                <td class="session-date">17/03/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
@@ -6409,7 +6720,7 @@
                             <tr>
                                 <td class="session-number">3</td>
                                 <td>6</td>
-                                <td class="session-date">03/02/2026</td>
+                                <td class="session-date">17/03/2026</td>
                                 <td>Martes</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
@@ -6419,7 +6730,7 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>7</td>
-                                <td class="session-date">05/02/2026</td>
+                                <td class="session-date">19/03/2026</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
@@ -6429,7 +6740,7 @@
                             <tr>
                                 <td class="session-number">4</td>
                                 <td>8</td>
-                                <td class="session-date">05/02/2026</td>
+                                <td class="session-date">19/03/2026</td>
                                 <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
@@ -6439,9 +6750,9 @@
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>9</td>
-                                <td class="session-date">07/02/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">24/03/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Despliegue de aplicaciones web en AWS paso a paso (front +
                                     back) con servicios básicos</td>
@@ -6449,9 +6760,9 @@
                             <tr>
                                 <td class="session-number">5</td>
                                 <td>10</td>
-                                <td class="session-date">07/02/2026</td>
-                                <td>Sábado</td>
-                                <td>09:00-11:00</td>
+                                <td class="session-date">24/03/2026</td>
+                                <td>Martes</td>
+                                <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Buenas prácticas de arquitectura en AWS: escalabilidad,
                                     seguridad y costos para principiantes</td>
@@ -6459,8 +6770,8 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>11</td>
-                                <td class="session-date">10/02/2026</td>
-                                <td>Martes</td>
+                                <td class="session-date">26/03/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Automatización y CI/CD en AWS: introducción a CodePipeline y
@@ -6469,8 +6780,8 @@
                             <tr>
                                 <td class="session-number">6</td>
                                 <td>12</td>
-                                <td class="session-date">10/02/2026</td>
-                                <td>Martes</td>
+                                <td class="session-date">26/03/2026</td>
+                                <td>Jueves</td>
                                 <td>16:00-18:00</td>
                                 <td>Alfredo Zea</td>
                                 <td class="session-topics">Optimización de costos en AWS: consejos clave para no gastar
@@ -6590,51 +6901,45 @@
         }
 
         function showSchedule(semana) {
-            // Obtener el contenedor principal
-            const container = document.querySelector('.schedule-container');
-
             // Remover clase active de todos los horarios
-            const allSchedules = [
-                'semana1-2Schedule',
-                'semana3Schedule',
-                'semana4-7Schedule',
-                'semana8-9Schedule',
-                'semana10Schedule',
-                'semana11-12Schedule'
-            ];
-
-            allSchedules.forEach(id => {
-                const element = document.getElementById(id);
-                element.classList.remove('active');
-                element.style.display = 'none';
+            const allSchedules = document.querySelectorAll('.schedule-content');
+            allSchedules.forEach(schedule => {
+                schedule.classList.remove('active');
             });
 
             // Remover clase active de todos los botones
             const buttons = document.querySelectorAll('.tab-button');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Mapeo de semanas
+            // Mapeo de semanas a índices de botones
             const scheduleMap = {
-                'semana1-2': 0,
-                'semana3': 1,
-                'semana4-7': 2,
-                'semana8-9': 3,
-                'semana10': 4,
-                'semana11-12': 5
+                'semana1': 0,
+                'semana2': 1,
+                'semana3': 2,
+                'semana4': 3,
+                'semana5': 4,
+                'semana6': 5,
+                'semana7-8': 6,
+                'semana9-12': 7,
+                'semana13': 8,
+                'semana14-15': 9,
+                'semana16': 10,
+                'semana17': 11,
+                'semana18-20': 12
             };
 
-            // Mostrar el horario seleccionado con un pequeño delay para la animación
-            const targetSchedule = document.getElementById(semana + 'Schedule');
-            targetSchedule.style.display = 'block';
-
-            // Forzar reflow para activar la transición
-            targetSchedule.offsetHeight;
-
+            // Esperar a que termine la transición de salida antes de mostrar el nuevo
             setTimeout(() => {
-                targetSchedule.classList.add('active');
-            }, 10);
+                const targetSchedule = document.getElementById(semana + 'Schedule');
+                if (targetSchedule) {
+                    targetSchedule.classList.add('active');
+                }
+            }, 100);
 
-            buttons[scheduleMap[semana]].classList.add('active');
+            // Activar el botón correspondiente inmediatamente
+            if (scheduleMap[semana] !== undefined) {
+                buttons[scheduleMap[semana]].classList.add('active');
+            }
         }
 
         // Navbar scroll effect
