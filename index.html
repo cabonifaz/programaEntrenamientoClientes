@@ -924,13 +924,10 @@
         .info-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 13px;
-            color: var(--gris-medio);
-            background: var(--azul-muy-claro);
-            padding: 8px 16px;
-            border-radius: 50px;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gris-oscuro);
+            line-height: 1.5;
         }
 
         .info-icon {
@@ -2891,6 +2888,902 @@
                 padding: 0 10px;
             }
         }
+
+        /* ================================
+   SECCIÓN CRITERIOS DE EVALUACIÓN
+   ================================ */
+
+        .evaluacion-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--azul-muy-claro) 50%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .evaluacion-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(0, 144, 188, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(249, 160, 63, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .evaluacion-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============
+   GRID PRINCIPAL
+   ============ */
+
+        .eval-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .eval-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ============
+   HEADERS DE COLUMNA
+   ============ */
+
+        .column-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 6px 25px rgba(0, 144, 188, 0.25);
+        }
+
+        .certificacion-column .column-header {
+            background: linear-gradient(135deg, var(--naranja-principal) 0%, var(--naranja-brillante) 100%);
+            box-shadow: 0 6px 25px rgba(249, 160, 63, 0.25);
+        }
+
+        .column-icon {
+            font-size: 32px;
+        }
+
+        .column-title {
+            font-size: 22px;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        /* ============
+   TARJETAS DE REQUISITOS
+   ============ */
+
+        .requisito-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .requisito-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .requisito-header {
+            background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--blanco) 100%);
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid var(--gris-claro);
+        }
+
+        .requisito-icon {
+            font-size: 32px;
+        }
+
+        .requisito-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+            margin: 0;
+        }
+
+        .requisito-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ============
+   REGLA VISUAL (2 INASISTENCIAS)
+   ============ */
+
+        .regla-principal {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff4e6 100%);
+            border: 3px solid var(--naranja-brillante);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .regla-visual {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .numero-limite {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--naranja-principal) 0%, var(--naranja-brillante) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: 900;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(249, 160, 63, 0.4);
+        }
+
+        .regla-texto {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .regla-label {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--naranja-oscuro);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .regla-desc {
+            font-size: 14px;
+            color: var(--gris-medio);
+            font-weight: 600;
+        }
+
+        /* ============
+   ADVERTENCIA
+   ============ */
+
+        .advertencia-box {
+            background: linear-gradient(135deg, #ffebee 0%, #fff5f5 100%);
+            border: 2px solid #ff4444;
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .advertencia-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .advertencia-box p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gris-oscuro);
+            margin: 0;
+        }
+
+        .advertencia-box strong {
+            color: #cc0000;
+            font-weight: 800;
+        }
+
+        /* ============
+   BULLETS INFO
+   ============ */
+
+        .info-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bullet-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gris-oscuro);
+            padding: 8px 0;
+        }
+
+        .bullet-check {
+            width: 22px;
+            height: 22px;
+            background: var(--verde-azulado);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        /* ============
+   EVALUACIONES - PROCESO
+   ============ */
+
+        .eval-intro {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gris-medio);
+            margin: 0 0 20px 0;
+        }
+
+        .eval-proceso {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .proceso-step {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            padding: 15px;
+            background: var(--azul-muy-claro);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .proceso-step:hover {
+            background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--blanco) 100%);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .step-info h5 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+            margin: 0 0 4px 0;
+        }
+
+        .step-info p {
+            font-size: 13px;
+            color: var(--gris-medio);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ============
+   GRID DE COMPONENTES SIMPLE
+   ============ */
+
+        .componentes-grid-simple {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .comp-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: var(--blanco);
+            border: 2px solid var(--gris-claro);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gris-oscuro);
+            transition: all 0.3s ease;
+        }
+
+        .comp-item:hover {
+            border-color: var(--azul-principal);
+            transform: scale(1.03);
+        }
+
+        .comp-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .comp-dot.gestión {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+
+        .comp-dot.arquitectura {
+            background: linear-gradient(135deg, #0090BC 0%, #33A8CB 100%);
+        }
+
+        .comp-dot.backend {
+            background: linear-gradient(135deg, #9b59b6 0%, #b19cd9 100%);
+        }
+
+        .comp-dot.frontend {
+            background: linear-gradient(135deg, #e74c3c 0%, #ff6b6b 100%);
+        }
+
+        .comp-dot.ia {
+            background: linear-gradient(135deg, #F08021 0%, #F9A03F 100%);
+        }
+
+        .comp-dot.cloud {
+            background: linear-gradient(135deg, #00A896 0%, #4ECDC4 100%);
+        }
+
+        /* ============
+   TARJETAS DE CERTIFICACIÓN
+   ============ */
+
+        .cert-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ============
+   VISUAL DEL CERTIFICADO
+   ============ */
+
+        .cert-visual {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .programa-visual {
+            background: linear-gradient(135deg, var(--naranja-principal) 0%, var(--naranja-brillante) 100%);
+        }
+
+        .cert-diploma {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .diploma-icon {
+            font-size: 60px;
+        }
+
+        .cert-badge-top {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============
+   INFO DEL CERTIFICADO
+   ============ */
+
+        .cert-info {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cert-name {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--azul-petróleo);
+            margin: 0;
+        }
+
+        .cert-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gris-medio);
+            margin: 0;
+        }
+
+        /* ============
+   STATS DEL CERTIFICADO
+   ============ */
+
+        .cert-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: var(--azul-muy-claro);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--azul-principal);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gris-medio);
+            line-height: 1.3;
+        }
+
+        /* ============
+   REQUISITOS DEL CERTIFICADO
+   ============ */
+
+        .cert-requisitos-list h5 {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+            margin: 0 0 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .req-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .req-list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gris-oscuro);
+        }
+
+        .req-bullet {
+            color: var(--azul-principal);
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        /* SECCIÓN CRITERIOS DE EVALUACIÓN */
+        .evaluacion-section {
+            padding: 100px 40px;
+            background: linear-gradient(180deg, var(--blanco) 0%, var(--azul-muy-claro) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .evaluacion-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .evaluacion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            margin-bottom: 60px;
+        }
+
+        .evaluacion-card {
+            background: var(--blanco);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .evaluacion-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .asistencia-card:hover {
+            border-color: var(--naranja-brillante);
+        }
+
+        .evaluacion-card-main:hover {
+            border-color: var(--azul-principal);
+        }
+
+        .certificacion-card:hover {
+            border-color: var(--verde-azulado);
+        }
+
+        .card-icon {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .icon-large {
+            font-size: 60px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ALERTAS */
+        .alert-box {
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .alert-box.warning {
+            background: linear-gradient(135deg, #fff4e6 0%, var(--blanco) 100%);
+            border: 2px solid var(--naranja-brillante);
+        }
+
+        .alert-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gris-oscuro);
+        }
+
+        .alert-content strong {
+            color: var(--naranja-oscuro);
+            font-weight: 800;
+        }
+
+        .highlight-number {
+            background: var(--naranja-brillante);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 900;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gris-oscuro);
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--verde-azulado);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            flex-shrink: 0;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        /* EVALUACIONES */
+        .evaluacion-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 20px;
+            background: var(--azul-muy-claro);
+            border-radius: 15px;
+        }
+
+        .eval-numero {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .eval-info h4 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+            margin-bottom: 8px;
+        }
+
+        .eval-info p {
+            font-size: 14px;
+            color: var(--gris-medio);
+            line-height: 1.6;
+        }
+
+        .componentes-eval {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .componente-mini {
+            background: var(--blanco);
+            border: 2px solid var(--azul-muy-claro);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .componente-mini:hover {
+            border-color: var(--azul-principal);
+            transform: scale(1.05);
+        }
+
+        .comp-icon {
+            font-size: 24px;
+        }
+
+        .comp-name {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--azul-petróleo);
+        }
+
+        .comp-eval {
+            background: var(--naranja-muy-claro);
+            color: var(--naranja-principal);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* CERTIFICACIÓN */
+        .cert-type {
+            padding: 25px;
+            background: var(--azul-muy-claro);
+            border-radius: 15px;
+        }
+
+        .cert-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .cert-icon {
+            font-size: 32px;
+        }
+
+        .cert-header h4 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+        }
+
+        .cert-type p {
+            font-size: 14px;
+            color: var(--gris-medio);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .cert-requisitos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .req-item {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--azul-principal);
+            border: 2px solid var(--azul-claro);
+        }
+
+        .cert-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--gris-claro) 50%, transparent 100%);
+        }
+
+        .cert-final {
+            background: linear-gradient(135deg, var(--naranja-muy-claro) 0%, var(--blanco) 100%);
+            border: 2px solid var(--naranja-brillante);
+        }
+
+        .cert-badge {
+            background: linear-gradient(135deg, var(--naranja-principal) 0%, var(--naranja-brillante) 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            margin-top: 10px;
+        }
+
+        .badge-icon {
+            font-size: 20px;
+        }
+
+        /* NOTA FINAL */
+        .nota-final {
+            background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--blanco) 100%);
+            border: 2px solid var(--azul-principal);
+            border-radius: 25px;
+            padding: 30px 40px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .nota-icon {
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .nota-content h4 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--azul-petróleo);
+            margin-bottom: 10px;
+        }
+
+        .nota-content p {
+            font-size: 15px;
+            color: var(--gris-medio);
+            line-height: 1.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .evaluacion-section {
+                padding: 60px 20px;
+            }
+
+            .evaluacion-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .evaluacion-card {
+                padding: 30px 20px;
+            }
+
+            .card-title {
+                font-size: 22px;
+            }
+
+            .icon-large {
+                font-size: 50px;
+            }
+
+            .componentes-eval {
+                grid-template-columns: 1fr;
+            }
+
+            .nota-final {
+                padding: 25px 20px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .cert-badge {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Nota adicional en certificados */
+        .cert-note {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--gris-oscuro);
+            font-weight: 600;
+        }
+
+        .note-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 
@@ -2927,14 +3820,19 @@
                     <a href="javascript:void(0);" onclick="scrollToSection('instructors'); return false;">
                         <span class="menu-icon">👥</span>
                         <span>Instructores</span>
-                        <a href="javascript:void(0);" onclick="scrollToSection('calendario-visual'); return false;">
-                            <span class="menu-icon">📅</span>
-                            <span>Calendario Visual</span>
-                        </a>
-                        <a href="javascript:void(0);" onclick="scrollToSection('ia-techs'); return false;">
-                            <span class="menu-icon">🤖</span>
-                            <span>IA en el Programa</span>
-                        </a>
+                    </a>
+                    <a href="javascript:void(0);" onclick="scrollToSection('evaluacion'); return false;">
+                        <span class="menu-icon">📊</span>
+                        <span>Evaluación</span>
+                    </a>
+                    <a href="javascript:void(0);" onclick="scrollToSection('calendario-visual'); return false;">
+                        <span class="menu-icon">📅</span>
+                        <span>Calendario Visual</span>
+                    </a>
+                    <a href="javascript:void(0);" onclick="scrollToSection('ia-techs'); return false;">
+                        <span class="menu-icon">🤖</span>
+                        <span>IA en el Programa</span>
+                    </a>
 
                 </div>
             </div>
@@ -4123,6 +5021,151 @@
             </div>
         </section>
 
+
+        <!-- SECCIÓN CRITERIOS DE EVALUACIÓN -->
+        <section class="evaluacion-section" id="evaluacion">
+            <div class="evaluacion-container">
+                <div class="section-header">
+                    <div class="section-badge">📊 REQUISITOS Y CERTIFICACIÓN</div>
+                    <h2 class="section-title">Criterios de Evaluación</h2>
+                    <p class="section-description">
+                        Conoce los requisitos para obtener tu certificación y el proceso de evaluación del programa
+                    </p>
+                </div>
+
+                <div class="evaluacion-grid">
+                    <!-- TARJETA 1: ASISTENCIA -->
+                    <div class="evaluacion-card asistencia-card">
+                        <div class="card-icon">
+                            <span class="icon-large">📅</span>
+                        </div>
+                        <h3 class="card-title">Asistencia Obligatoria</h3>
+                        <div class="card-content">
+                            <div class="alert-box warning">
+                                <span class="alert-icon">⚠️</span>
+                                <div class="alert-content">
+                                    <strong>Importante:</strong> Máximo <span class="highlight-number">2 inasistencias
+                                        injustificadas por componente</span>.
+                                    Exceder este límite resulta en la NO emisión del certificado de ese componente.
+                                </div>
+                            </div>
+                            <div class="info-list">
+                                <div class="info-item">
+                                    <span class="check-icon">✓</span>
+                                    <span>Se registra asistencia en cada clase</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="check-icon">✓</span>
+                                    <span>Las justificaciones deben presentarse con anticipación</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TARJETA 2: EVALUACIONES -->
+                    <div class="evaluacion-card evaluacion-card-main">
+                        <div class="card-icon">
+                            <span class="icon-large">📝</span>
+                        </div>
+                        <h3 class="card-title">Evaluaciones</h3>
+                        <div class="card-content">
+                            <div class="evaluacion-item">
+                                <div class="eval-numero">1</div>
+                                <div class="eval-info">
+                                    <h4>Evaluación al Final de cada Componente</h4>
+                                    <p>Cada módulo tecnológico incluye una evaluación al finalizar el componente
+                                        completo</p>
+                                </div>
+                            </div>
+                            <div class="componentes-eval">
+                                <div class="componente-mini">
+                                    <span class="comp-icon">📋</span>
+                                    <span class="comp-name">Gestión</span>
+                                    <span class="comp-eval">1 Eval</span>
+                                </div>
+                                <div class="componente-mini">
+                                    <span class="comp-icon">🏗️</span>
+                                    <span class="comp-name">Arquitectura</span>
+                                    <span class="comp-eval">1 Eval</span>
+                                </div>
+                                <div class="componente-mini">
+                                    <span class="comp-icon">⚙️</span>
+                                    <span class="comp-name">Back-End</span>
+                                    <span class="comp-eval">1 Eval</span>
+                                </div>
+                                <div class="componente-mini">
+                                    <span class="comp-icon">🎨</span>
+                                    <span class="comp-name">Front-End</span>
+                                    <span class="comp-eval">1 Eval</span>
+                                </div>
+                                <div class="componente-mini">
+                                    <span class="comp-icon">🤖</span>
+                                    <span class="comp-name">IA Coding</span>
+                                    <span class="comp-eval">1 Eval</span>
+                                </div>
+                                <div class="componente-mini">
+                                    <span class="comp-icon">☁️</span>
+                                    <span class="comp-name">Cloud AWS</span>
+                                    <span class="comp-eval">1 Eval</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TARJETA 3: CERTIFICACIÓN -->
+                    <div class="evaluacion-card certificacion-card">
+                        <div class="card-icon">
+                            <span class="icon-large">🎓</span>
+                        </div>
+                        <h3 class="card-title">Certificaciones</h3>
+                        <div class="card-content">
+                            <div class="cert-type">
+                                <div class="cert-header">
+                                    <span class="cert-icon">📜</span>
+                                    <h4>Certificado por Componente</h4>
+                                </div>
+                                <p>Al finalizar todo el programa, se emite un certificado individual por cada componente
+                                    </p>
+                                <div class="cert-requisitos">
+                                    <span class="req-item">✓ Cumplir asistencia del componente</span>
+                                </div>
+                                <div class="cert-note">
+                                    <span class="note-icon">📌</span>
+                                    <span>Los 6 certificados se entregan al concluir el programa completo</span>
+                                </div>
+                            </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-type cert-final">
+                                <div class="cert-header">
+                                    <span class="cert-icon">🏆</span>
+                                    <h4>Certificado del Programa Completo</h4>
+                                </div>
+                                <p>Adicionalmente, recibirás un certificado general que avala tu formación integral en
+                                    todo el stack tecnológico</p>
+                                <div class="cert-badge">
+                                    <span class="badge-icon">⭐</span>
+                                    <span class="badge-text">Certificación Integral Fractal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTA INFORMATIVA -->
+                <div class="nota-final">
+                    <div class="nota-icon">💡</div>
+                    <div class="nota-content">
+                        <h4>Información Importante</h4>
+                        <p>
+                            Todos los certificados (individuales por componente + certificado integral) se emiten
+                            digitalmente
+                            al finalizar todo el programa. No hay nota mínima aprobatoria, pero se debe cumplir con los requisitos de asistencia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FOOTER -->
 
         <!-- CALENDARIO VISUAL SECTION -->
@@ -4512,8 +5555,10 @@
                         <div class="ia-badge">🚀 FORMACIÓN DEL FUTURO</div>
                         <h2 class="ia-title">Programa Orientado a Inteligencia Artificial</h2>
                         <p class="ia-description">
-                            En este programa, utilizarás herramientas IA como <strong>Claude, ChatGPT y GitHub Copilot</strong>
-                            para programar de manera más eficiente, acelerar tu aprendizaje y mejorar la calidad de tu código desde el primer día.
+                            En este programa, utilizarás herramientas IA como <strong>Claude, ChatGPT y GitHub
+                                Copilot</strong>
+                            para programar de manera más eficiente, acelerar tu aprendizaje y mejorar la calidad de tu
+                            código desde el primer día.
                         </p>
                     </div>
 
@@ -4571,8 +5616,10 @@
                     <div class="ia-footer">
                         <h3 class="ia-footer-title">🌟 Transformación Digital en tu Desarrollo</h3>
                         <p class="ia-footer-text">
-                            Este programa te sumergirá en el uso de la Inteligencia Artificial para transformar tu manera de programar. 
-                            A lo largo del curso, optimizarás tus procesos de desarrollo, mejorando la productividad y calidad de tus proyectos desde el primer día.
+                            Este programa te sumergirá en el uso de la Inteligencia Artificial para transformar tu
+                            manera de programar.
+                            A lo largo del curso, optimizarás tus procesos de desarrollo, mejorando la productividad y
+                            calidad de tus proyectos desde el primer día.
                         </p>
                     </div>
                 </div>
