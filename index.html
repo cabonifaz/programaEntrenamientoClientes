@@ -306,13 +306,14 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, var(--naranja-principal) 0%, var(--naranja-brillante) 100%);
             backdrop-filter: blur(10px);
             padding: 25px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--naranja-claro);
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(249, 160, 63, 0.4);
         }
 
         .stat-card:hover {
@@ -323,15 +324,18 @@
         .stat-number {
             font-size: 42px;
             font-weight: 900;
-            color: var(--naranja-brillante);
+            color: #FFFFFF !important;
+            /* YA ESTÁ EN BLANCO */
             line-height: 1;
             margin-bottom: 10px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .stat-label {
             font-size: 14px;
-            opacity: 0.9;
+            opacity: 0.95;
             font-weight: 600;
+            color: #FFFFFF !important;
         }
 
         .hero-visual {
@@ -2910,6 +2914,7 @@
                 radial-gradient(circle at 20% 30%, rgba(0, 144, 188, 0.03) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(249, 160, 63, 0.03) 0%, transparent 50%);
             pointer-events: none;
+            min-width: 0;
         }
 
         .evaluacion-container {
@@ -2917,6 +2922,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            min-width: 0;
         }
 
         /* ============
@@ -2925,16 +2931,18 @@
 
         .eval-main-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
             gap: 40px;
             margin-top: 50px;
             margin-bottom: 50px;
+            min-width: 0;
         }
 
         .eval-column {
             display: flex;
             flex-direction: column;
             gap: 25px;
+            min-width: 0;
         }
 
         /* ============
@@ -2950,21 +2958,25 @@
             border-radius: 20px;
             color: white;
             box-shadow: 0 6px 25px rgba(0, 144, 188, 0.25);
+            min-width: 0;
         }
 
         .certificacion-column .column-header {
             background: linear-gradient(135deg, var(--naranja-principal) 0%, var(--naranja-brillante) 100%);
             box-shadow: 0 6px 25px rgba(249, 160, 63, 0.25);
+            min-width: 0;
         }
 
         .column-icon {
             font-size: 32px;
+            min-width: 0;
         }
 
         .column-title {
             font-size: 22px;
             font-weight: 900;
             margin: 0;
+            min-width: 0;
         }
 
         /* ============
@@ -2977,11 +2989,13 @@
             overflow: hidden;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            min-width: 0;
         }
 
         .requisito-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            min-width: 0;
         }
 
         .requisito-header {
@@ -2991,10 +3005,12 @@
             align-items: center;
             gap: 15px;
             border-bottom: 2px solid var(--gris-claro);
+            min-width: 0;
         }
 
         .requisito-icon {
             font-size: 32px;
+            min-width: 0;
         }
 
         .requisito-title {
@@ -3002,6 +3018,7 @@
             font-weight: 800;
             color: var(--azul-petróleo);
             margin: 0;
+            min-width: 0;
         }
 
         .requisito-content {
@@ -3009,6 +3026,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            min-width: 0;
         }
 
         /* ============
@@ -3020,12 +3038,15 @@
             border: 3px solid var(--naranja-brillante);
             border-radius: 15px;
             padding: 25px;
+            min-width: 0;
         }
 
         .regla-visual {
             display: flex;
             align-items: center;
             gap: 20px;
+            flex-wrap: wrap;
+            min-width: 0;
         }
 
         .numero-limite {
@@ -3041,12 +3062,14 @@
             font-weight: 900;
             flex-shrink: 0;
             box-shadow: 0 6px 20px rgba(249, 160, 63, 0.4);
+            min-width: 0;
         }
 
         .regla-texto {
             display: flex;
             flex-direction: column;
             gap: 4px;
+            min-width: 0;
         }
 
         .regla-label {
@@ -3055,12 +3078,14 @@
             color: var(--naranja-oscuro);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            min-width: 0;
         }
 
         .regla-desc {
             font-size: 14px;
             color: var(--gris-medio);
             font-weight: 600;
+            min-width: 0;
         }
 
         /* ============
@@ -3075,11 +3100,13 @@
             display: flex;
             gap: 15px;
             align-items: flex-start;
+            min-width: 0;
         }
 
         .advertencia-icon {
             font-size: 24px;
             flex-shrink: 0;
+            min-width: 0;
         }
 
         .advertencia-box p {
@@ -3087,11 +3114,13 @@
             line-height: 1.7;
             color: var(--gris-oscuro);
             margin: 0;
+            min-width: 0;
         }
 
         .advertencia-box strong {
             color: #cc0000;
             font-weight: 800;
+            min-width: 0;
         }
 
         /* ============
@@ -3102,6 +3131,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            min-width: 0;
         }
 
         .bullet-item {
@@ -3111,6 +3141,7 @@
             font-size: 14px;
             color: var(--gris-oscuro);
             padding: 8px 0;
+            min-width: 0;
         }
 
         .bullet-check {
@@ -3125,6 +3156,7 @@
             font-weight: 900;
             font-size: 12px;
             flex-shrink: 0;
+            min-width: 0;
         }
 
         /* ============
@@ -3136,6 +3168,7 @@
             line-height: 1.7;
             color: var(--gris-medio);
             margin: 0 0 20px 0;
+            min-width: 0;
         }
 
         .eval-proceso {
@@ -3143,6 +3176,7 @@
             flex-direction: column;
             gap: 15px;
             margin-bottom: 20px;
+            min-width: 0;
         }
 
         .proceso-step {
@@ -3153,11 +3187,13 @@
             background: var(--azul-muy-claro);
             border-radius: 12px;
             transition: all 0.3s ease;
+            min-width: 0;
         }
 
         .proceso-step:hover {
             background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--blanco) 100%);
             transform: translateX(5px);
+            min-width: 0;
         }
 
         .step-number {
@@ -3172,6 +3208,7 @@
             font-size: 18px;
             font-weight: 900;
             flex-shrink: 0;
+            min-width: 0;
         }
 
         .step-info h5 {
@@ -3179,6 +3216,7 @@
             font-weight: 800;
             color: var(--azul-petróleo);
             margin: 0 0 4px 0;
+            min-width: 0;
         }
 
         .step-info p {
@@ -3186,6 +3224,7 @@
             color: var(--gris-medio);
             margin: 0;
             line-height: 1.5;
+            min-width: 0;
         }
 
         /* ============
@@ -3196,6 +3235,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
+            min-width: 0;
         }
 
         .comp-item {
@@ -3210,11 +3250,13 @@
             font-weight: 700;
             color: var(--gris-oscuro);
             transition: all 0.3s ease;
+            min-width: 0;
         }
 
         .comp-item:hover {
             border-color: var(--azul-principal);
             transform: scale(1.03);
+            min-width: 0;
         }
 
         .comp-dot {
@@ -3222,30 +3264,37 @@
             height: 12px;
             border-radius: 50%;
             flex-shrink: 0;
+            min-width: 0;
         }
 
         .comp-dot.gestión {
             background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            min-width: 0;
         }
 
         .comp-dot.arquitectura {
             background: linear-gradient(135deg, #0090BC 0%, #33A8CB 100%);
+            min-width: 0;
         }
 
         .comp-dot.backend {
             background: linear-gradient(135deg, #9b59b6 0%, #b19cd9 100%);
+            min-width: 0;
         }
 
         .comp-dot.frontend {
             background: linear-gradient(135deg, #e74c3c 0%, #ff6b6b 100%);
+            min-width: 0;
         }
 
         .comp-dot.ia {
             background: linear-gradient(135deg, #F08021 0%, #F9A03F 100%);
+            min-width: 0;
         }
 
         .comp-dot.cloud {
             background: linear-gradient(135deg, #00A896 0%, #4ECDC4 100%);
+            min-width: 0;
         }
 
         /* ============
@@ -3588,23 +3637,32 @@
         }
 
         .componente-mini {
-            background: var(--blanco);
-            border: 2px solid var(--azul-muy-claro);
-            padding: 15px;
-            border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 12px 15px;
+            background: var(--blanco);
+            border: 2px solid var(--gris-claro);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gris-oscuro);
             transition: all 0.3s ease;
+            min-width: 0;
+            /* IMPORTANTE */
+            overflow: hidden;
+            /* IMPORTANTE */
         }
 
         .componente-mini:hover {
             border-color: var(--azul-principal);
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .comp-icon {
             font-size: 24px;
+            flex-shrink: 0;
+            /* Evita que el icono se comprima */
         }
 
         .comp-name {
@@ -3612,6 +3670,14 @@
             font-size: 13px;
             font-weight: 700;
             color: var(--azul-petróleo);
+            overflow: hidden;
+            /* IMPORTANTE */
+            text-overflow: ellipsis;
+            /* IMPORTANTE */
+            white-space: nowrap;
+            /* IMPORTANTE */
+            min-width: 0;
+            /* IMPORTANTE */
         }
 
         .comp-eval {
@@ -3621,6 +3687,10 @@
             border-radius: 50px;
             font-size: 11px;
             font-weight: 800;
+            white-space: nowrap;
+            /* Evita que se parta en dos líneas */
+            flex-shrink: 0;
+            /* Evita que se comprima */
         }
 
         /* CERTIFICACIÓN */
@@ -3748,8 +3818,79 @@
                 font-size: 50px;
             }
 
-            .componentes-eval {
-                grid-template-columns: 1fr;
+            @media (max-width: 768px) {
+                /* ... otros estilos ... */
+
+                .componentes-eval {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                }
+
+                .componente-mini {
+                    padding: 10px 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+
+                .comp-icon {
+                    font-size: 20px;
+                }
+
+                .comp-name {
+                    font-size: 12px;
+                }
+
+                .comp-eval {
+                    font-size: 10px;
+                    padding: 3px 8px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .componentes-eval {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+
+                .componente-mini {
+                    padding: 10px;
+                    font-size: 11px;
+                    gap: 6px;
+                }
+
+                .comp-icon {
+                    font-size: 18px;
+                }
+
+                .comp-name {
+                    font-size: 11px;
+                }
+
+                .comp-eval {
+                    font-size: 9px;
+                    padding: 2px 6px;
+                }
+            }
+
+            /* FIX PARA EVALUACIONES */
+            .evaluacion-item {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .eval-numero {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .eval-info h4 {
+                font-size: 16px;
+            }
+
+            .eval-info p {
+                font-size: 13px;
             }
 
             .nota-final {
@@ -3763,6 +3904,82 @@
                 display: flex;
                 width: 100%;
                 justify-content: center;
+            }
+
+            /* FIX PARA CERTIFICADOS */
+            .cert-requisitos {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .req-item {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* RESPONSIVO EXTRA PEQUEÑO */
+        @media (max-width: 480px) {
+            .evaluacion-card {
+                padding: 25px 15px;
+            }
+
+            .card-title {
+                font-size: 20px;
+            }
+
+            .icon-large {
+                font-size: 40px;
+            }
+
+            .componente-mini {
+                padding: 10px;
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .comp-icon {
+                font-size: 20px;
+            }
+
+            .comp-name {
+                font-size: 11px;
+            }
+
+            .comp-eval {
+                font-size: 9px;
+            }
+
+            .eval-numero {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                border-radius: 10px;
+            }
+
+            .eval-info h4 {
+                font-size: 15px;
+            }
+
+            .eval-info p {
+                font-size: 12px;
+            }
+
+            .nota-final {
+                padding: 20px 15px;
+            }
+
+            .nota-icon {
+                font-size: 32px;
+            }
+
+            .nota-content h4 {
+                font-size: 18px;
+            }
+
+            .nota-content p {
+                font-size: 14px;
             }
         }
 
@@ -5125,7 +5342,7 @@
                                     <h4>Certificado por Componente</h4>
                                 </div>
                                 <p>Al finalizar todo el programa, se emite un certificado individual por cada componente
-                                    </p>
+                                </p>
                                 <div class="cert-requisitos">
                                     <span class="req-item">✓ Cumplir asistencia del componente</span>
                                 </div>
@@ -5159,7 +5376,8 @@
                         <p>
                             Todos los certificados (individuales por componente + certificado integral) se emiten
                             digitalmente
-                            al finalizar todo el programa. No hay nota mínima aprobatoria, pero se debe cumplir con los requisitos de asistencia.
+                            al finalizar todo el programa. No hay nota mínima aprobatoria, pero se debe cumplir con los
+                            requisitos de asistencia.
                         </p>
                     </div>
                 </div>
