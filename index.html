@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programa de Entrenamiento-Fractal</title>
     <style>
+        .tab-button small {
+            font-size: 11px;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
         :root {
             /* Paleta corporativa Fractal */
             --azul-oscuro: #005A7A;
@@ -2689,11 +2695,77 @@
         }
 
         #tabla-datos {
+            table-layout: fixed;
             width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
+            border-collapse: separate;
+            min-width: 1100px;
             background: var(--blanco);
             table-layout: fixed;
+
+        }
+
+        #tabla-datos th:nth-child(1) {
+            width: 80px;
+        }
+
+        /* N° */
+        #tabla-datos th:nth-child(2) {
+            width: 120px;
+        }
+
+        /* FECHA */
+        #tabla-datos th:nth-child(3) {
+            width: 150px;
+        }
+
+        /* COMPONENTE */
+        #tabla-datos th:nth-child(4) {
+            width: 150px;
+        }
+
+        /* INSTRUCTOR */
+        #tabla-datos th:nth-child(5) {
+            width: 200px;
+        }
+
+        /* LINK */
+        #tabla-datos th:nth-child(6) {
+            width: 170px;
+        }
+
+        /* ESTADO */
+        #tabla-datos th:nth-child(7) {
+            width: 200px;
+        }
+
+        /* ASISTENCIAS */
+
+        #tabla-datos td:nth-child(1) {
+            width: 80px;
+        }
+
+        #tabla-datos td:nth-child(2) {
+            width: 120px;
+        }
+
+        #tabla-datos td:nth-child(3) {
+            width: 150px;
+        }
+
+        #tabla-datos td:nth-child(4) {
+            width: 150px;
+        }
+
+        #tabla-datos td:nth-child(5) {
+            width: 200px;
+        }
+
+        #tabla-datos td:nth-child(6) {
+            width: 170px;
+        }
+
+        #tabla-datos td:nth-child(7) {
+            width: 200px;
         }
 
         #tabla-datos thead tr {
@@ -2890,6 +2962,75 @@
             .table-container {
                 margin: 15px -10px;
                 padding: 0 10px;
+            }
+        }
+
+        /* MEJORAS PARA LA TABLA DE CLASES EN VIVO */
+        #tabla-datos {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #tabla-datos thead tr {
+            background: linear-gradient(135deg, #006C8E 0%, #0090BC 100%);
+        }
+
+        #tabla-datos thead th {
+            padding: 16px 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            border: none;
+        }
+
+        #tabla-datos thead th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        #tabla-datos thead th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        #tabla-datos tbody tr {
+            background: white;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        #tabla-datos tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        #tabla-datos tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        #tabla-datos tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        /* Responsive para la tabla */
+        @media (max-width: 768px) {
+            .table-container {
+                margin: 0 -15px;
+                padding: 0 15px;
+            }
+
+            #tabla-datos {
+                font-size: 12px;
+            }
+
+            #tabla-datos thead th {
+                padding: 12px 8px;
+                font-size: 11px;
+            }
+
+            #tabla-datos tbody td {
+                padding: 12px 8px !important;
             }
         }
 
@@ -4619,19 +4760,32 @@
             </div>
             <div class="schedule-container">
                 <div class="schedule-tabs">
-                    <button class="tab-button active" onclick="showSchedule('semana1')">Semana 1</button>
-                    <button class="tab-button" onclick="showSchedule('semana2')">Semana 2</button>
-                    <button class="tab-button" onclick="showSchedule('semana3')">Semana 3</button>
-                    <button class="tab-button" onclick="showSchedule('semana4')">Semana 4</button>
-                    <button class="tab-button" onclick="showSchedule('semana5')">Semana 5</button>
-                    <button class="tab-button" onclick="showSchedule('semana6')">Semana 6</button>
-                    <button class="tab-button" onclick="showSchedule('semana7-8')">Semanas 7-8</button>
-                    <button class="tab-button" onclick="showSchedule('semana9-12')">Semanas 9-12</button>
-                    <button class="tab-button" onclick="showSchedule('semana13')">Semana 13</button>
-                    <button class="tab-button" onclick="showSchedule('semana14-15')">Semanas 14-15</button>
-                    <button class="tab-button" onclick="showSchedule('semana16')">Semana 16</button>
-                    <button class="tab-button" onclick="showSchedule('semana17')">Semana 17</button>
-                    <button class="tab-button" onclick="showSchedule('semana18-20')">Semanas 18-20</button>
+                    <button class="tab-button active" onclick="showSchedule('semana1')">Semana
+                        1<br><small>10/11/25-16/11/25</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana2')">Semana
+                        2<br><small>17/11/25-23/11/25</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana3')">Semana
+                        3<br><small>24/11/25-30/11/25</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana4')">Semana
+                        4<br><small>01/12/25-07/12/25</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana5')">Semana
+                        5<br><small>08/12/25-14/12/25</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana6')">Semana
+                        6<br><small>15/12/25-21/12/25</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana7-8')">Semanas
+                        7-8<br><small>22/12/25-04/01/26</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana9-12')">Semanas
+                        9-12<br><small>05/01/26-31/01/26</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana13')">Semana
+                        13<br><small>02/02/26-08/02/26</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana14-15')">Semanas
+                        14-15<br><small>09/02/26-22/02/26</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana16')">Semana
+                        16<br><small>23/02/26-01/03/26</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana17')">Semana
+                        17<br><small>02/03/26-08/03/26</small></button>
+                    <button class="tab-button" onclick="showSchedule('semana18-20')">Semanas
+                        18-20<br><small>09/03/26-29/03/26</small></button>
                 </div>
 
                 <div class="schedule-wrapper">
@@ -4639,7 +4793,7 @@
                     <div class="schedule-content active" id="semana1Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 1</div>
+                            <div>SEMANA 1 • 10/11/25-16/11/25</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4673,7 +4827,7 @@
                     <div class="schedule-content" id="semana2Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 2</div>
+                            <div>SEMANA 3 • 17/11/25-23/11/25</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4707,7 +4861,7 @@
                     <div class="schedule-content" id="semana3Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 3</div>
+                            <div>SEMANA 3 • 24/11/25-30/11/25</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4741,7 +4895,7 @@
                     <div class="schedule-content" id="semana4Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 4</div>
+                            <div>SEMANA 4 • 01/12/25-07/12/25</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4775,7 +4929,7 @@
                     <div class="schedule-content" id="semana5Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 5</div>
+                            <div>SEMANA 5 • 08/12/25-14/12/25</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4811,7 +4965,7 @@
                     <div class="schedule-content" id="semana6Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 6</div>
+                            <div>SEMANA 6 • 15/12/25-21/12/25</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4845,7 +4999,7 @@
                     <div class="schedule-content" id="semana7-8Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 7-8</div>
+                            <div>SEMANAS 7-8 • 22/12/25-04/01/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4881,7 +5035,7 @@
                     <div class="schedule-content" id="semana9-12Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 9-12</div>
+                            <div>SEMANAS 9-12 • 05/01/26-31/01/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4915,7 +5069,7 @@
                     <div class="schedule-content" id="semana13Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 13</div>
+                            <div>SEMANA 13 • 02/02/26-08/02/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4949,7 +5103,7 @@
                     <div class="schedule-content" id="semana14-15Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 14-15</div>
+                            <div>SEMANAS 14-15 • 09/02/26-22/02/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -4983,7 +5137,7 @@
                     <div class="schedule-content" id="semana16Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 16</div>
+                            <div>SEMANA 16 • 23/02/26-01/03/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -5017,7 +5171,7 @@
                     <div class="schedule-content" id="semana17Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANA 17</div>
+                            <div>SEMANA 17 • 02/03/26-08/03/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -5051,7 +5205,7 @@
                     <div class="schedule-content" id="semana18-20Schedule">
                         <div class="schedule-header">
                             <div class="schedule-icon">📅</div>
-                            <div>SEMANAS 18-20</div>
+                            <div>SEMANAS 18-20 • 09/03/26-29/03/26</div>
                         </div>
                         <div class="schedule-table-wrapper">
                             <table>
@@ -5143,7 +5297,7 @@
                 <div class="instructor-card">
                     <div class="instructor-avatar">👨‍💻</div>
                     <h4 class="instructor-name">Daniel Soto</h4>
-                    <div class="instructor-tech">Angular JS</div>
+                    <div class="instructor-tech">Front-End</div>
                     <div class="instructor-info">
                         <div class="info-item">
                             <span class="info-icon">📚</span>
@@ -5151,14 +5305,14 @@
                         </div>
                         <div class="info-item">
                             <span class="info-icon">⏱️</span>
-                            <span>12 horas | 2 semanas</span>
+                            <span>12 horas | 4 semanas</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="instructor-card">
-                    <div class="instructor-avatar">👨‍💻</div>
-                    <h4 class="instructor-name">Alfredo Solano</h4>
+                    <div class="instructor-avatar">👩‍💻</div>
+                    <h4 class="instructor-name">Nikole La Cunza</h4>
                     <div class="instructor-tech">Back-End</div>
                     <div class="instructor-info">
                         <div class="info-item">
@@ -5167,7 +5321,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-icon">⏱️</span>
-                            <span>24 horas | 4 semanas</span>
+                            <span>24 horas | 8 semanas</span>
                         </div>
                     </div>
                 </div>
@@ -5175,7 +5329,7 @@
                 <div class="instructor-card">
                     <div class="instructor-avatar">👨‍💻</div>
                     <h4 class="instructor-name">Álvaro Burga</h4>
-                    <div class="instructor-tech">Back-End + Arquitectura + Gestión</div>
+                    <div class="instructor-tech">Gestión</div>
                     <div class="instructor-info">
                         <div class="info-item">
                             <span class="info-icon">📚</span>
@@ -5183,23 +5337,23 @@
                         </div>
                         <div class="info-item">
                             <span class="info-icon">⏱️</span>
-                            <span>42 horas totales</span>
+                            <span>12 horas | 4 semanas</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="instructor-card">
                     <div class="instructor-avatar">👨‍💻</div>
-                    <h4 class="instructor-name">Alfredo Zea</h4>
-                    <div class="instructor-tech">AWS Cloud</div>
+                    <h4 class="instructor-name">Cris Alan Bonifaz</h4>
+                    <div class="instructor-tech">Arquitectura</div>
                     <div class="instructor-info">
                         <div class="info-item">
                             <span class="info-icon">📚</span>
-                            <span>Cloud Computing</span>
+                            <span>Múltiples especialidades</span>
                         </div>
                         <div class="info-item">
                             <span class="info-icon">⏱️</span>
-                            <span>12 horas | 2 semanas</span>
+                            <span>6 horas | 3 semanas</span>
                         </div>
                     </div>
                 </div>
@@ -5215,7 +5369,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-icon">⏱️</span>
-                            <span>12 horas | 2 semanas</span>
+                            <span>12 horas | 3 semanas</span>
                         </div>
                     </div>
                 </div>
@@ -5231,7 +5385,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-icon">⏱️</span>
-                            <span>6 horas | 1 semana</span>
+                            <span>6 horas | 2 semana</span>
                         </div>
                     </div>
                 </div>
@@ -8528,58 +8682,72 @@
                 const response = await fetch(sheetURL, {
                     method: 'GET',
                     mode: 'cors',
-                    headers: {
-                        'Accept': 'text/csv,text/plain,*/*'
-                    }
+                    cache: 'no-cache'
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Error al conectar con Google Sheets`);
+                    throw new Error(`Error HTTP: ${response.status}`);
                 }
 
                 const csv = await response.text();
 
                 if (!csv || csv.trim() === '') {
-                    throw new Error('No hay datos disponibles');
+                    throw new Error('CSV vacío');
                 }
 
-                // Procesar CSV línea por línea
-                const lineas = csv.split('\n').filter(linea => linea.trim().length > 0);
+                // ✅ PARSER CSV MEJORADO - Maneja comillas correctamente
+                function parseCSVLine(line) {
+                    const result = [];
+                    let current = '';
+                    let inQuotes = false;
 
-                if (lineas.length === 0) {
-                    throw new Error('No se encontraron datos');
-                }
-
-                // Procesar cada línea respetando comillas
-                const filas = lineas.map(linea => {
-                    const valores = [];
-                    let valorActual = '';
-                    let dentroDeComillas = false;
-
-                    for (let i = 0; i < linea.length; i++) {
-                        const char = linea[i];
+                    for (let i = 0; i < line.length; i++) {
+                        const char = line[i];
+                        const nextChar = line[i + 1];
 
                         if (char === '"') {
-                            dentroDeComillas = !dentroDeComillas;
-                        } else if (char === ',' && !dentroDeComillas) {
-                            valores.push(valorActual.replace(/^"|"$/g, '').trim());
-                            valorActual = '';
+                            if (inQuotes && nextChar === '"') {
+                                // Comilla escapada ""
+                                current += '"';
+                                i++; // Saltar la siguiente comilla
+                            } else {
+                                // Toggle estado de comillas
+                                inQuotes = !inQuotes;
+                            }
+                        } else if (char === ',' && !inQuotes) {
+                            // Fin de campo
+                            result.push(current.trim());
+                            current = '';
                         } else {
-                            valorActual += char;
+                            current += char;
                         }
                     }
-                    valores.push(valorActual.replace(/^"|"$/g, '').trim());
-                    return valores;
-                });
 
+                    // Agregar último campo
+                    result.push(current.trim());
+                    return result;
+                }
+
+                // Dividir en líneas y parsear cada una
+                const lineas = csv.split(/\r?\n/).filter(l => l.trim().length > 0);
+
+                if (lineas.length < 2) {
+                    throw new Error('No hay suficientes datos');
+                }
+
+                const filas = lineas.map(parseCSVLine);
                 const [encabezados, ...datos] = filas;
 
-                // Filtrar solo filas con datos reales
+                console.log('📊 Encabezados:', encabezados);
+                console.log('📊 Primera fila de datos:', datos[0]);
+
+                // Filtrar filas con datos reales
                 const datosReales = datos.filter(fila => {
                     return fila.some(celda => celda && celda.trim() !== '' && celda.trim() !== '-');
                 });
 
-                // Si no hay datos reales, mostrar mensaje amigable
+                console.log('✅ Total de filas con datos:', datosReales.length);
+
                 if (datosReales.length === 0) {
                     loadingMsg.innerHTML = `
                 <div style="text-align: center; 
@@ -8588,15 +8756,12 @@
                             border-radius: 25px;
                             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
                     
-                    <div style="font-size: 100px; margin-bottom: 30px; animation: fadeIn 1s ease;">
-                        📅
-                    </div>
+                    <div style="font-size: 100px; margin-bottom: 30px; animation: fadeIn 1s ease;">📅</div>
                     
                     <h3 style="color: var(--azul-petróleo); 
                                font-size: 32px; 
                                font-weight: 900; 
-                               margin-bottom: 20px;
-                               line-height: 1.3;">
+                               margin-bottom: 20px;">
                         Sin clases programadas en este momento
                     </h3>
                     
@@ -8605,32 +8770,9 @@
                               line-height: 1.7;
                               max-width: 600px;
                               margin: 0 auto 30px;">
-                        Los enlaces de las clases en vivo se publicarán próximamente.<br>
-                        Mantente atento a las actualizaciones del calendario.
+                        Los enlaces de las clases en vivo se publicarán próximamente.
                     </p>
-                    
-                    <div style="display: inline-flex;
-                               align-items: center;
-                               gap: 10px;
-                               background: rgba(0, 144, 188, 0.1);
-                               padding: 15px 30px;
-                               border-radius: 50px;
-                               margin-top: 20px;">
-                        <span style="font-size: 24px;">💡</span>
-                        <span style="color: var(--azul-principal); 
-                                     font-weight: 700;
-                                     font-size: 16px;">
-                            Revisa el cronograma en la sección de Horarios
-                        </span>
-                    </div>
                 </div>
-                
-                <style>
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: scale(0.8); }
-                        to { opacity: 1; transform: scale(1); }
-                    }
-                </style>
             `;
                     return;
                 }
@@ -8645,47 +8787,196 @@
 
                 // Crear filas de datos
                 tbody.innerHTML = datosReales.map((fila) => {
-                    return '<tr>' + fila.map((celda, i) => {
+                    // Detectar el estado de la clase
+                    const estadoIndex = encabezados.findIndex(h =>
+                        h.toLowerCase().includes('estado')
+                    );
+                    const estado = estadoIndex >= 0 ? (fila[estadoIndex] || '').toLowerCase() : '';
+                    const esConcluida = estado.includes('concluida') || estado.includes('concluido');
+                    const esFeriado = estado.includes('feriado');
+                    const noHuboClase = estado.includes('no hubo');
+
+                    return '<tr style="transition: all 0.3s ease;" onmouseover="this.style.backgroundColor=\'#f8f9fa\'" onmouseout="this.style.backgroundColor=\'white\'">' + fila.map((celda, i) => {
                         const encabezado = (encabezados[i] || '').toLowerCase();
 
-                        // Detectar columnas de enlaces
-                        const esColumnaLink = encabezado.includes('link') ||
-                            encabezado.includes('enlace') ||
-                            encabezado.includes('url') ||
-                            encabezado.includes('clase');
+                        // ====== COLUMNA LINK ======
+                        if (encabezado.includes('link') && !encabezado.includes('asistencia')) {
+                            // Si la clase está concluida, mostrar botón rojo no interactivo
+                            if (esConcluida) {
+                                return `<td style="text-align: center; padding: 15px 10px;">
+                    <div style="display: inline-flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 8px;
+                              padding: 10px 20px;
+                              min-width: 160px;
+                              background: linear-gradient(135deg, #e57373 0%, #ef5350 100%); 
+                              color: white; 
+                              border-radius: 8px; 
+                              font-weight: 600; 
+                              font-size: 13px;
+                              box-shadow: 0 2px 8px rgba(229, 115, 115, 0.3);
+                              opacity: 0.85;
+                              cursor: not-allowed;">
+                        <span style="font-size: 16px;">🔴</span>
+                        <span>Clase finalizada</span>
+                    </div>
+                </td>`;
+                            }
 
-                        // Detectar si el contenido es una URL
-                        const esURL = celda && (
-                            celda.startsWith('http://') ||
-                            celda.startsWith('https://') ||
-                            celda.startsWith('www.')
-                        );
+                            // Si NO está concluida y tiene enlace, mostrar botón activo
+                            const esURL = celda && (
+                                celda.startsWith('http://') ||
+                                celda.startsWith('https://') ||
+                                celda.startsWith('www.') ||
+                                celda.includes('meet.google.com') ||
+                                celda.includes('zoom.us')
+                            );
 
-                        // Si es un enlace, crear botón estilizado
-                        if ((esColumnaLink || esURL) && celda && celda.trim() !== '') {
-                            const urlFinal = celda.startsWith('www.') ? 'https://' + celda : celda;
-                            return `<td>
-                        <a href="${urlFinal}" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           style="display: inline-block; 
-                                  padding: 10px 20px; 
-                                  background: linear-gradient(135deg, #0090BC, #33A8CB); 
-                                  color: white; 
-                                  text-decoration: none; 
-                                  border-radius: 8px; 
-                                  font-weight: 600; 
-                                  font-size: 13px;
-                                  transition: all 0.3s ease;
-                                  box-shadow: 0 2px 8px rgba(0,144,188,0.3);"
-                           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,144,188,0.4)';"
-                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,144,188,0.3)';">
-                            🎥 Ir a clase
-                        </a>
-                    </td>`;
+                            if (esURL && celda.trim() !== '' && celda !== '-') {
+                                const urlFinal = celda.startsWith('www.') ? 'https://' + celda : celda;
+                                return `<td style="text-align: center; padding: 15px 10px;">
+                    <a href="${urlFinal}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="display: inline-flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 8px;
+                              padding: 10px 20px;
+                              min-width: 160px;
+                              background: linear-gradient(135deg, #0090BC, #33A8CB); 
+                              color: white; 
+                              text-decoration: none; 
+                              border-radius: 8px; 
+                              font-weight: 600; 
+                              font-size: 13px;
+                              transition: all 0.3s ease;
+                              box-shadow: 0 2px 8px rgba(0,144,188,0.3);"
+                       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,144,188,0.4)';"
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,144,188,0.3)';">
+                        <span style="font-size: 16px;">🎥</span>
+                        <span>Ir a clase</span>
+                    </a>
+                </td>`;
+                            }
+
+                            // Si no tiene enlace, mostrar guion
+                            return `<td style="text-align: center; padding: 15px 10px; color: #999; font-weight: 500;">-</td>`;
                         }
 
-                        return `<td>${celda || '-'}</td>`;
+                        // ====== COLUMNA ASISTENCIAS ======
+                        if (encabezado.includes('asistencia')) {
+                            // Detectar si el contenido es una URL
+                            const esURL = celda && (
+                                celda.startsWith('http://') ||
+                                celda.startsWith('https://') ||
+                                celda.startsWith('www.') ||
+                                celda.includes('docs.google.com') ||
+                                celda.includes('excel') ||
+                                celda.includes('sheets')
+                            );
+
+                            if (esURL && celda.trim() !== '' && celda !== '-') {
+                                const urlFinal = celda.startsWith('www.') ? 'https://' + celda : celda;
+                                return `<td style="text-align: center; padding: 15px 10px;">
+                    <a href="${urlFinal}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="display: inline-flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 8px;
+                              padding: 10px 20px;
+                              min-width: 140px;
+                              background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); 
+                              color: white; 
+                              text-decoration: none; 
+                              border-radius: 8px; 
+                              font-weight: 600; 
+                              font-size: 13px;
+                              transition: all 0.3s ease;
+                              box-shadow: 0 2px 8px rgba(39,174,96,0.3);"
+                       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(39,174,96,0.4)';"
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(39,174,96,0.3)';">
+                        <span style="font-size: 16px;">📊</span>
+                        <span>Excel</span>
+                    </a>
+                </td>`;
+                            }
+
+                            // Si no tiene enlace, mostrar guion
+                            return `<td style="text-align: center; padding: 15px 10px; color: #999; font-weight: 500;">-</td>`;
+                        }
+
+                        // ====== COLUMNA ESTADO ======
+                        if (encabezado.includes('estado')) {
+                            if (esConcluida) {
+                                return `<td style="text-align: center; padding: 15px 10px;">
+                    <span style="display: inline-flex;
+                                 align-items: center;
+                                 gap: 6px;
+                                 padding: 8px 16px;
+                                 background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+                                 color: #2e7d32;
+                                 border-radius: 8px;
+                                 font-weight: 600;
+                                 font-size: 13px;
+                                 border: 2px solid #81c784;">
+                        <span style="font-size: 14px;">✓</span>
+                        <span>concluida</span>
+                    </span>
+                </td>`;
+                            }
+                            if (esFeriado) {
+                                return `<td style="text-align: center; padding: 15px 10px;">
+                    <span style="display: inline-flex;
+                                 align-items: center;
+                                 gap: 6px;
+                                 padding: 8px 16px;
+                                 background: linear-gradient(135deg, #fff9e6 0%, #ffe8b3 100%);
+                                 color: #f57c00;
+                                 border-radius: 8px;
+                                 font-weight: 600;
+                                 font-size: 13px;
+                                 border: 2px solid #ffb74d;">
+                        <span style="font-size: 14px;">🎉</span>
+                        <span>FERIADO</span>
+                    </span>
+                </td>`;
+                            }
+                            if (noHuboClase) {
+                                return `<td style="text-align: center; padding: 15px 10px;">
+                    <span style="display: inline-flex;
+                                 align-items: center;
+                                 gap: 6px;
+                                 padding: 8px 16px;
+                                 background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+                                 color: #6a1b9a;
+                                 border-radius: 8px;
+                                 font-weight: 600;
+                                 font-size: 13px;
+                                 border: 2px solid #ba68c8;">
+                        <span style="font-size: 14px;">ℹ️</span>
+                        <span>NO HUBO CLASE</span>
+                    </span>
+                </td>`;
+                            }
+                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC;">${celda || '-'}</td>`;
+                        }
+
+                        // ====== COLUMNA FECHA ======
+                        if (encabezado.includes('fecha') || encabezado.includes('date')) {
+                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC; font-size: 14px;">${celda || '-'}</td>`;
+                        }
+
+                        // ====== COLUMNA N° ======
+                        if (encabezado === 'n°' || encabezado === 'nº') {
+                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 700; color: #333; font-size: 15px;">${celda || '-'}</td>`;
+                        }
+
+                        // ====== OTRAS COLUMNAS ======
+                        return `<td style="text-align: center; padding: 15px 10px; color: #555; font-size: 14px;">${celda || '-'}</td>`;
                     }).join('') + '</tr>';
                 }).join('');
 
@@ -8693,10 +8984,11 @@
                 loadingMsg.style.display = 'none';
                 tabla.style.display = 'table';
 
-            } catch (error) {
-                console.error('Error al cargar datos:', error);
+                console.log('✅ Tabla cargada exitosamente');
 
-                // Mensaje de error simple y amigable
+            } catch (error) {
+                console.error('❌ Error completo:', error);
+
                 loadingMsg.innerHTML = `
             <div style="text-align: center; 
                         padding: 80px 40px;
@@ -8710,33 +9002,32 @@
                            font-size: 32px; 
                            font-weight: 900; 
                            margin-bottom: 20px;">
-                    No se pudieron cargar las clases
+                    Error al cargar las clases
                 </h3>
                 
                 <p style="color: var(--gris-medio); 
-                          font-size: 18px; 
+                          font-size: 16px; 
                           line-height: 1.7;
                           max-width: 600px;
-                          margin: 0 auto 30px;">
-                    Parece que hay un problema con la conexión al calendario.<br>
-                    Por favor, intenta recargar la página o contacta al coordinador.
+                          margin: 0 auto 20px;">
+                    ${error.message}
                 </p>
                 
-<button onclick="cargarDatosSheet()" 
-        style="background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
-               color: white;
-               border: none;
-               padding: 15px 40px;
-               border-radius: 50px;
-               font-weight: 700;
-               font-size: 16px;
-               cursor: pointer;
-               box-shadow: 0 6px 20px rgba(0, 144, 188, 0.3);
-               transition: all 0.3s ease;"
-        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0, 144, 188, 0.4)';"
-        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0, 144, 188, 0.3)';">
-    🔄 Reintentar carga
-</button>
+                <button onclick="cargarDatosSheet()" 
+                        style="background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
+                               color: white;
+                               border: none;
+                               padding: 15px 40px;
+                               border-radius: 50px;
+                               font-weight: 700;
+                               font-size: 16px;
+                               cursor: pointer;
+                               box-shadow: 0 6px 20px rgba(0, 144, 188, 0.3);
+                               transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-3px)';"
+                        onmouseout="this.style.transform='translateY(0)';">
+                    🔄 Reintentar
+                </button>
             </div>
         `;
             }
