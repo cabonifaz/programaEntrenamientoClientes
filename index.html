@@ -8983,200 +8983,100 @@
                 ).join('') + '</tr>';
 
                 // Crear filas de datos
+                // --- BLOQUE UNIFICADO: SIN CLASE PARA CANCELADAS Y FERIADOS ---
                 tbody.innerHTML = datosReales.map((fila) => {
-                    // Detectar el estado de la clase
-                    const estadoIndex = encabezados.findIndex(h =>
-                        h.toLowerCase().includes('estado')
-                    );
-                    const estado = estadoIndex >= 0 ? (fila[estadoIndex] || '').toLowerCase() : '';
-                    const esConcluida = estado.includes('concluida') || estado.includes('concluido');
-                    const esFeriado = estado.includes('feriado');
-                    const noHuboClase = estado.includes('no hubo');
+                    const fechaIndex = encabezados.findIndex(h => h.toLowerCase().includes('fecha'));
+                    const estadoIndex = encabezados.findIndex(h => h.toLowerCase().includes('estado'));
+
+                    const fechaTexto = fila[fechaIndex] || '';
+                    const estadoManual = (fila[estadoIndex] || '').toLowerCase();
+
+                    // Lógica de fecha actual
+                    let claseYaPaso = false;
+                    if (fechaTexto && fechaTexto !== '-' && fechaTexto !== '') {
+                        const partes = fechaTexto.split('/');
+                        if (partes.length === 3) {
+                            const fechaClaseFin = new Date(partes[2], partes[1] - 1, partes[0], 23, 59, 59);
+                            if (new Date() > fechaClaseFin) claseYaPaso = true;
+                        }
+                    }
+
+                    // DETERMINACIÓN DE ESTADO REAL
+                    let estadoFinal = "programada";
+                    let esFeriado = estadoManual.includes('feriado');
+                    let esCancelada = estadoManual.includes('no hubo') || estadoManual.includes('cancelada');
+                    let esConcluida = !esFeriado && !esCancelada && (claseYaPaso || estadoManual.includes('conclui'));
+
+                    if (esFeriado) estadoFinal = "feriado";
+                    else if (esCancelada) estadoFinal = "cancelada";
+                    else if (esConcluida) estadoFinal = "concluida";
 
                     return '<tr style="transition: all 0.3s ease;" onmouseover="this.style.backgroundColor=\'#f8f9fa\'" onmouseout="this.style.backgroundColor=\'white\'">' + fila.map((celda, i) => {
                         const encabezado = (encabezados[i] || '').toLowerCase();
 
-                        // ====== COLUMNA LINK ======
+                        // ====== COLUMNA LINK (BLOQUEO DINÁMICO) ======
                         if (encabezado.includes('link') && !encabezado.includes('asistencia')) {
-                            // Si la clase está concluida, mostrar botón rojo no interactivo
-                            if (esConcluida) {
+                            if (estadoFinal === "concluida" || estadoFinal === "cancelada" || estadoFinal === "feriado") {
+
+                                // Configuración visual del botón bloqueado
+                                let bgBlock = "linear-gradient(135deg, #e57373 0%, #ef5350 100%)"; // Rojo (Finalizada)
+                                let icon = "🔴";
+
+                                if (estadoFinal === "feriado" || estadoFinal === "cancelada") {
+                                    bgBlock = "linear-gradient(135deg, #FFB74D 0%, #F57C00 100%)"; // Naranja (Sin Clase)
+                                    icon = "🗓️";
+                                }
+
                                 return `<td style="text-align: center; padding: 15px 10px;">
-                    <div style="display: inline-flex;
-                              align-items: center;
-                              justify-content: center;
-                              gap: 8px;
-                              padding: 10px 20px;
-                              min-width: 160px;
-                              background: linear-gradient(135deg, #e57373 0%, #ef5350 100%); 
-                              color: white; 
-                              border-radius: 8px; 
-                              font-weight: 600; 
-                              font-size: 13px;
-                              box-shadow: 0 2px 8px rgba(229, 115, 115, 0.3);
-                              opacity: 0.85;
-                              cursor: not-allowed;">
-                        <span style="font-size: 16px;">🔴</span>
-                        <span>Clase finalizada</span>
-                    </div>
-                </td>`;
+                                    <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; background: ${bgBlock}; color: white; border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); opacity: 0.85; cursor: not-allowed;">
+                                        <span>${icon}</span>
+                                        <span>Sin clase</span>
+                                    </div>
+                                </td>`;
                             }
 
-                            // Si NO está concluida y tiene enlace, mostrar botón activo
-                            const esURL = celda && (
-                                celda.startsWith('http://') ||
-                                celda.startsWith('https://') ||
-                                celda.startsWith('www.') ||
-                                celda.includes('meet.google.com') ||
-                                celda.includes('zoom.us')
-                            );
-
-                            if (esURL && celda.trim() !== '' && celda !== '-') {
+                            if (celda && celda.includes('http')) {
                                 const urlFinal = celda.startsWith('www.') ? 'https://' + celda : celda;
                                 return `<td style="text-align: center; padding: 15px 10px;">
-                    <a href="${urlFinal}" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       style="display: inline-flex;
-                              align-items: center;
-                              justify-content: center;
-                              gap: 8px;
-                              padding: 10px 20px;
-                              min-width: 160px;
-                              background: linear-gradient(135deg, #0090BC, #33A8CB); 
-                              color: white; 
-                              text-decoration: none; 
-                              border-radius: 8px; 
-                              font-weight: 600; 
-                              font-size: 13px;
-                              transition: all 0.3s ease;
-                              box-shadow: 0 2px 8px rgba(0,144,188,0.3);"
-                       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,144,188,0.4)';"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,144,188,0.3)';">
-                        <span style="font-size: 16px;">🎥</span>
-                        <span>Ir a clase</span>
-                    </a>
-                </td>`;
+                                    <a href="${urlFinal}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; background: linear-gradient(135deg, #0090BC, #33A8CB); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,144,188,0.3);" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
+                                        <span>🎥 Ir a clase</span>
+                                    </a>
+                                </td>`;
                             }
-
-                            // Si no tiene enlace, mostrar guion
-                            return `<td style="text-align: center; padding: 15px 10px; color: #999; font-weight: 500;">-</td>`;
+                            return `<td style="text-align: center; padding: 15px 10px; color: #999;">-</td>`;
                         }
 
-                        // ====== COLUMNA ASISTENCIAS ======
+                        // ====== COLUMNA ASISTENCIAS (EXCEL) ======
                         if (encabezado.includes('asistencia')) {
-                            // Detectar si el contenido es una URL
-                            const esURL = celda && (
-                                celda.startsWith('http://') ||
-                                celda.startsWith('https://') ||
-                                celda.startsWith('www.') ||
-                                celda.includes('docs.google.com') ||
-                                celda.includes('excel') ||
-                                celda.includes('sheets')
-                            );
-
-                            if (esURL && celda.trim() !== '' && celda !== '-') {
-                                const urlFinal = celda.startsWith('www.') ? 'https://' + celda : celda;
+                            if (celda && celda.includes('http')) {
                                 return `<td style="text-align: center; padding: 15px 10px;">
-                    <a href="${urlFinal}" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       style="display: inline-flex;
-                              align-items: center;
-                              justify-content: center;
-                              gap: 8px;
-                              padding: 10px 20px;
-                              min-width: 140px;
-                              background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); 
-                              color: white; 
-                              text-decoration: none; 
-                              border-radius: 8px; 
-                              font-weight: 600; 
-                              font-size: 13px;
-                              transition: all 0.3s ease;
-                              box-shadow: 0 2px 8px rgba(39,174,96,0.3);"
-                       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(39,174,96,0.4)';"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(39,174,96,0.3)';">
-                        <span style="font-size: 16px;">📊</span>
-                        <span>Excel</span>
-                    </a>
-                </td>`;
+                                    <a href="${celda}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 140px; background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(39,174,96,0.3);" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
+                                        <span>📊 Excel</span>
+                                    </a>
+                                </td>`;
                             }
-
-                            // Si no tiene enlace, mostrar guion
-                            return `<td style="text-align: center; padding: 15px 10px; color: #999; font-weight: 500;">-</td>`;
+                            return `<td style="text-align: center; padding: 15px 10px; color: #999;">-</td>`;
                         }
 
                         // ====== COLUMNA ESTADO ======
                         if (encabezado.includes('estado')) {
-                            if (esConcluida) {
-                                return `<td style="text-align: center; padding: 15px 10px;">
-                    <span style="display: inline-flex;
-                                 align-items: center;
-                                 gap: 6px;
-                                 padding: 8px 16px;
-                                 background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-                                 color: #2e7d32;
-                                 border-radius: 8px;
-                                 font-weight: 600;
-                                 font-size: 13px;
-                                 border: 2px solid #81c784;">
-                        <span style="font-size: 14px;">✓</span>
-                        <span>concluida</span>
-                    </span>
-                </td>`;
+                            let common = "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; border: 2px solid;";
+                            if (estadoFinal === "concluida") {
+                                return `<td style="text-align: center; padding: 15px 10px;"><span style="${common} background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); color: #2e7d32; border-color: #81c784;"><span style="font-size: 14px;">✓</span><span>concluida</span></span></td>`;
                             }
-                            if (esFeriado) {
-                                return `<td style="text-align: center; padding: 15px 10px;">
-                    <span style="display: inline-flex;
-                                 align-items: center;
-                                 gap: 6px;
-                                 padding: 8px 16px;
-                                 background: linear-gradient(135deg, #fff9e6 0%, #ffe8b3 100%);
-                                 color: #f57c00;
-                                 border-radius: 8px;
-                                 font-weight: 600;
-                                 font-size: 13px;
-                                 border: 2px solid #ffb74d;">
-                        <span style="font-size: 14px;">🎉</span>
-                        <span>FERIADO</span>
-                    </span>
-                </td>`;
+                            if (estadoFinal === "feriado") {
+                                return `<td style="text-align: center; padding: 15px 10px;"><span style="${common} background: linear-gradient(135deg, #fff9e6 0%, #ffe8b3 100%); color: #f57c00; border-color: #ffb74d;"><span style="font-size: 14px;">🎉</span><span>FERIADO</span></span></td>`;
                             }
-                            if (noHuboClase) {
-                                return `<td style="text-align: center; padding: 15px 10px;">
-                    <span style="display: inline-flex;
-                                 align-items: center;
-                                 gap: 6px;
-                                 padding: 8px 16px;
-                                 background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-                                 color: #6a1b9a;
-                                 border-radius: 8px;
-                                 font-weight: 600;
-                                 font-size: 13px;
-                                 border: 2px solid #ba68c8;">
-                        <span style="font-size: 14px;">ℹ️</span>
-                        <span>NO HUBO CLASE</span>
-                    </span>
-                </td>`;
+                            if (estadoFinal === "cancelada") {
+                                return `<td style="text-align: center; padding: 15px 10px;"><span style="${common} background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); color: #6a1b9a; border-color: #ba68c8;"><span style="font-size: 14px;">ℹ️</span><span>CANCELADA</span></span></td>`;
                             }
-                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC;">${celda || '-'}</td>`;
+                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC;">${celda || 'programada'}</td>`;
                         }
 
-                        // ====== COLUMNA FECHA ======
-                        if (encabezado.includes('fecha') || encabezado.includes('date')) {
-                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC; font-size: 14px;">${celda || '-'}</td>`;
-                        }
-
-                        // ====== COLUMNA N° ======
-                        if (encabezado === 'n°' || encabezado === 'nº') {
-                            return `<td style="text-align: center; padding: 15px 10px; font-weight: 700; color: #333; font-size: 15px;">${celda || '-'}</td>`;
-                        }
-
-                        // ====== OTRAS COLUMNAS ======
-                        return `<td style="text-align: center; padding: 15px 10px; color: #555; font-size: 14px;">${celda || '-'}</td>`;
+                        if (encabezado.includes('fecha')) return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC;">${celda}</td>`;
+                        return `<td style="text-align: center; padding: 15px 10px; color: #555;">${celda || '-'}</td>`;
                     }).join('') + '</tr>';
                 }).join('');
-
                 // Mostrar tabla y ocultar mensaje de carga
                 loadingMsg.style.display = 'none';
                 tabla.style.display = 'table';
@@ -9435,7 +9335,7 @@
         }
 
         // 3. Limpiar filtros volviendo a la página 1
-        // Función para limpiar filtros sin perder la lógica de Próximas Clases
+        // Función para limpiar filtros sin perder la lógica de Próximas Clasescd erp_light
         function clearLiveFilters() {
             // 1. Limpiamos los inputs visualmente
             document.getElementById('filterDateLive').value = '';
