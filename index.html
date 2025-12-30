@@ -2687,86 +2687,80 @@
 
         /* ESTILOS PARA TABLA DE CLASES EN VIVO */
         .table-container {
+            width: 100%;
             overflow-x: auto;
+            /* ERROR CORREGIDO: Activa el desplazamiento lateral */
             -webkit-overflow-scrolling: touch;
             border-radius: 15px;
-            max-width: 100%;
-            margin: 0;
         }
 
         #tabla-datos {
             table-layout: fixed;
+            /* ERROR CORREGIDO: Mantiene el ancho de las celdas constante */
             width: 100%;
+            min-width: 1250px;
+            /* ERROR CORREGIDO: Impide que las 8 columnas se aplasten */
             border-collapse: separate;
-            min-width: 1100px;
-            background: var(--blanco);
-            table-layout: fixed;
-
         }
 
-        #tabla-datos th:nth-child(1) {
-            width: 80px;
+        #tabla-datos th:nth-child(1),
+        #tabla-datos td:nth-child(1) {
+            width: 50px;
         }
 
         /* N° */
-        #tabla-datos th:nth-child(2) {
-            width: 120px;
+        #tabla-datos th:nth-child(2),
+        #tabla-datos td:nth-child(2) {
+            width: 110px;
         }
 
         /* FECHA */
-        #tabla-datos th:nth-child(3) {
-            width: 150px;
+        #tabla-datos th:nth-child(3),
+        #tabla-datos td:nth-child(3) {
+            width: 130px;
         }
 
         /* COMPONENTE */
-        #tabla-datos th:nth-child(4) {
-            width: 150px;
-        }
-
-        /* INSTRUCTOR */
-        #tabla-datos th:nth-child(5) {
-            width: 200px;
-        }
-
-        /* LINK */
-        #tabla-datos th:nth-child(6) {
-            width: 170px;
-        }
-
-        /* ESTADO */
-        #tabla-datos th:nth-child(7) {
-            width: 200px;
-        }
-
-        /* ASISTENCIAS */
-
-        #tabla-datos td:nth-child(1) {
-            width: 80px;
-        }
-
-        #tabla-datos td:nth-child(2) {
-            width: 120px;
-        }
-
-        #tabla-datos td:nth-child(3) {
-            width: 150px;
-        }
-
+        #tabla-datos th:nth-child(4),
         #tabla-datos td:nth-child(4) {
             width: 150px;
         }
 
+        /* INSTRUCTOR */
+        #tabla-datos th:nth-child(5),
         #tabla-datos td:nth-child(5) {
-            width: 200px;
+            width: 180px;
         }
 
+        /* LINK */
+        #tabla-datos th:nth-child(6),
         #tabla-datos td:nth-child(6) {
-            width: 170px;
+            width: 140px;
         }
 
+        /* ESTADO */
+        #tabla-datos th:nth-child(7),
         #tabla-datos td:nth-child(7) {
-            width: 200px;
+            width: 140px;
         }
+
+        /* ASISTENCIAS */
+        #tabla-datos th:nth-child(8),
+        #tabla-datos td:nth-child(8) {
+            width: 180px;
+        }
+
+        #tabla-datos td div,
+        #tabla-datos td a {
+            white-space: nowrap;
+            /* Evita que el texto rompa el botón */
+            flex-shrink: 0;
+        }
+
+        /* GRABACIÓN */
+        /* GRABACIÓN (Más ancho) */
+
+        /* ASISTENCIAS */
 
         #tabla-datos thead tr {
             background: var(--azul-petróleo);
@@ -2798,9 +2792,9 @@
             border-bottom: 1px solid var(--gris-claro);
             font-size: 13px;
             color: var(--gris-oscuro);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
         }
 
         #tabla-datos tbody tr:hover td {
@@ -9016,34 +9010,37 @@
 
                         // ====== COLUMNA LINK (BLOQUEO DINÁMICO) ======
                         if (encabezado.includes('link') && !encabezado.includes('asistencia')) {
-                            if (estadoFinal === "concluida" || estadoFinal === "cancelada" || estadoFinal === "feriado") {
+                            let contenidoBoton = "";
+                            let estiloBoton = "";
 
-                                // Configuración visual del botón bloqueado
-                                let bgBlock = "linear-gradient(135deg, #e57373 0%, #ef5350 100%)"; // Rojo (Finalizada)
-                                let icon = "🔴";
-
-                                if (estadoFinal === "feriado" || estadoFinal === "cancelada") {
-                                    bgBlock = "linear-gradient(135deg, #FFB74D 0%, #F57C00 100%)"; // Naranja (Sin Clase)
-                                    icon = "🗓️";
-                                }
-
-                                return `<td style="text-align: center; padding: 15px 10px;">
-                                    <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; background: ${bgBlock}; color: white; border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); opacity: 0.85; cursor: not-allowed;">
-                                        <span>${icon}</span>
-                                        <span>Sin clase</span>
-                                    </div>
-                                </td>`;
-                            }
-
-                            if (celda && celda.includes('http')) {
+                            if (estadoFinal === "concluida") {
+                                // CONFIGURACIÓN BOTÓN ROJO
+                                styleBoton = "background: linear-gradient(135deg, #e57373 0%, #ef5350 100%);";
+                                contenidoBoton = `
+            <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; ${styleBoton} color: white; border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); opacity: 0.9; cursor: not-allowed;">
+                <span>🔴</span>
+                <span>Clase pasada</span>
+            </div>`;
+                            } else if (estadoFinal === "feriado" || estadoFinal === "cancelada") {
+                                // CONFIGURACIÓN BOTÓN AMARILLO/NARANJA
+                                styleBoton = "background: linear-gradient(135deg, #FFB74D 0%, #F57C00 100%);";
+                                contenidoBoton = `
+            <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; ${styleBoton} color: white; border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); opacity: 0.9; cursor: not-allowed;">
+                <span>🗓️</span>
+                <span>Sin clase</span>
+            </div>`;
+                            } else if (celda && celda.includes('http')) {
+                                // CONFIGURACIÓN BOTÓN AZUL (ACTIVO)
                                 const urlFinal = celda.startsWith('www.') ? 'https://' + celda : celda;
-                                return `<td style="text-align: center; padding: 15px 10px;">
-                                    <a href="${urlFinal}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; background: linear-gradient(135deg, #0090BC, #33A8CB); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,144,188,0.3);" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
-                                        <span>🎥 Ir a clase</span>
-                                    </a>
-                                </td>`;
+                                contenidoBoton = `
+            <a href="${urlFinal}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; min-width: 160px; background: linear-gradient(135deg, #0090BC, #33A8CB); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,144,188,0.3);" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
+                <span>🎥 Ir a clase</span>
+            </a>`;
+                            } else {
+                                contenidoBoton = `<span style="color: #999;">-</span>`;
                             }
-                            return `<td style="text-align: center; padding: 15px 10px; color: #999;">-</td>`;
+
+                            return `<td style="text-align: center; padding: 15px 10px;">${contenidoBoton}</td>`;
                         }
 
                         // ====== COLUMNA ASISTENCIAS (EXCEL) ======
@@ -9071,6 +9068,26 @@
                                 return `<td style="text-align: center; padding: 15px 10px;"><span style="${common} background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); color: #6a1b9a; border-color: #ba68c8;"><span style="font-size: 14px;">ℹ️</span><span>CANCELADA</span></span></td>`;
                             }
                             return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC;">${celda || 'programada'}</td>`;
+                        }
+
+                        // ====== COLUMNA GRABACIÓN (NUEVA) ======
+                        if (encabezado.includes('grabación') || encabezado.includes('grabacion')) {
+                            if (celda && celda.includes('http')) {
+                                return `<td style="text-align: center; padding: 10px 5px;">
+            <a href="${celda}" target="_blank" rel="noopener noreferrer" 
+               style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 8px 12px; width: 100%; max-width: 150px; background: linear-gradient(135deg, #6C63FF, #5852d6); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 11px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(108,99,255,0.3);">
+                <span style="font-size: 14px;">🎬</span>
+                <span style="white-space: nowrap;">Ver Grabación</span>
+            </a>
+        </td>`;
+                            }
+                            // Si la clase ya pasó pero no hay link de grabación aún
+                            if (estadoFinal === "concluida") {
+                                return `<td style="text-align: center; padding: 15px 10px; color: #6B6B6B; font-style: italic; font-size: 11px;">
+            -
+        </td>`;
+                            }
+                            return `<td style="text-align: center; padding: 15px 10px; color: #999;">-</td>`;
                         }
 
                         if (encabezado.includes('fecha')) return `<td style="text-align: center; padding: 15px 10px; font-weight: 600; color: #0090BC;">${celda}</td>`;
